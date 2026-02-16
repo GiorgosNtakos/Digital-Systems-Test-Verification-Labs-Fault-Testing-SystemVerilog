@@ -1,52 +1,115 @@
-# Digital Systems Testing & Verification Labs (Synopsys DFT Flow)
+# Digital Systems Testing Labs — ATPG & DFT Workflows
 
 > 🇬🇷 Ελληνική έκδοση: [README_GR.md](./README_GR.md)
-
+> 
 
 This repository contains laboratory exercises for the course  
-**“Special Topics in Digital Systems Design”**, focusing on testing and verification of digital circuits using industrial EDA tools.
+**“Special Topics in Digital Systems Design”**, focusing on testing and verification of digital circuits using both academic and industrial tools.
 
-The labs follow a complete Design-For-Test (DFT) flow using Synopsys tools, including synthesis, scan insertion, Automatic Test Pattern Generation (ATPG), and fault simulation.
+The labs cover two distinct testing workflows:
+
+- Classical ATPG and fault simulation using Atalanta & HOPE
+- Industrial Design-For-Test (DFT) flow using Synopsys tools
 
 ---
 
-## 📚 Course Overview
-
-The course covers methodologies for ensuring correct operation of digital systems in the presence of faults.
-
-Main topics include:
+## 📚 Course Topics
 
 - Fault models (stuck-at faults)
-- Design-For-Testability (DFT)
-- Scan chain insertion
 - Automatic Test Pattern Generation (ATPG)
+- Deterministic and pseudorandom testing
 - Fault simulation
 - Test coverage analysis
-- Verification of digital designs
-
----
-
-## 🛠️ Tools Used
-
-The laboratory exercises are based on Synopsys EDA tools:
-
-- **Design Compiler** — logic synthesis and scan insertion  
-- **TetraMax** — ATPG and fault simulation  
-- Verilog HDL  
-- Standard Cell Libraries  
-
-Typical workflow:
-
-1. Synthesize the design
-2. Insert scan chains (DFT)
-3. Generate test protocols
-4. Perform ATPG
-5. Run fault simulation
-6. Analyze test coverage
+- Scan-based testing methodologies
+- Verification of digital circuits
 
 ---
 
 ## 🧪 Laboratory Exercises
+
+### Lab 1 — ATPG & Fault Simulation with Atalanta and HOPE
+
+This lab focuses on classical testing techniques for combinational circuits using benchmark circuits in BENCH format.
+
+Tools used:
+
+- **Atalanta** — ATPG for combinational circuits  
+- **HOPE** — Parallel fault simulator  
+
+Key tasks include:
+
+- Generation of test vectors for stuck-at faults
+- Multiple test patterns per fault
+- Random Pattern Testing (RPT)
+- FAN algorithm configuration
+- Fault simulation of generated patterns
+- Identification of undetected and redundant faults
+- Analysis of circuit responses under faults
+
+Benchmark circuits such as `c880o.bench`, `s9234.bench`, and `c1355o.bench` are used.
+
+---
+
+### Lab 2 — Synopsys DFT Flow (Design Compiler & TetraMax)
+
+This lab introduces an industrial Design-For-Test workflow.
+
+Tools used:
+
+- **Design Compiler (DC)** — synthesis and scan insertion  
+- **TetraMax (TMax)** — ATPG and fault simulation  
+
+Key tasks include:
+
+- Logic synthesis of digital circuits
+- Scan chain insertion (full-scan methodology)
+- Creation of test protocols
+- Deterministic ATPG for combinational and sequential circuits
+- Design Rule Checking (DRC)
+- Fault simulation using generated or predefined test sets
+- Test coverage analysis
+- Generation of additional patterns for undetected faults
+
+Benchmark circuits include `c1355.v`, `c7552.v`, `s1423.v`, and `c3540.v`.
+
+---
+
+## 🛠️ Tools & Technologies
+
+- Atalanta ATPG Tool
+- HOPE Fault Simulator
+- Synopsys Design Compiler
+- Synopsys TetraMax
+- Verilog HDL
+- ISCAS Benchmark Circuits
+- BENCH Format Circuits
+
+---
+
+## 🎯 Learning Objectives
+
+After completing these labs, students should be able to:
+
+- Understand classical fault models
+- Generate effective test patterns
+- Perform fault simulation
+- Evaluate test coverage
+- Apply scan-based testing techniques
+- Use industrial EDA tools for DFT workflows
+
+---
+
+## 🏫 Institution
+
+Department of Computer Engineering & Informatics  
+University of Patras — Polytechnic School
+
+---
+
+## 📄 License
+
+This repository is intended for educational purposes.
+
 
 ### Lab 1 — Fault Simulation of Synthesized Circuits
 
