@@ -1,0 +1,23 @@
+# A3: Exclude faults on AOI32D1 cells and re-run fault simulation
+
+read netlist c1355_synth.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model c1355
+run drc
+
+# Full stuck-at fault set
+add faults -all
+
+# --- Fallback: remove by explicit AOI32D1 instances (from netlist) ---
+remove faults -instance U121
+remove faults -instance U125
+remove faults -instance U129
+remove faults -instance U133
+remove faults -instance U206
+remove faults -instance U275
+
+set pattern external c1355_test_set.v
+run fault_sim
+report summaries
+
+exit -force

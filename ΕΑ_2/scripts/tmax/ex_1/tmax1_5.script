@@ -1,0 +1,29 @@
+# tmax_A5_c7552_random_faultsim
+read netlist c7552_synth.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model c7552
+run drc
+
+set_faults -model stuck
+create_faults -all
+
+set tests [list \
+  c7552_test_set_10.v \
+  c7552_test_set_50.v \
+  c7552_test_set_100.v \
+  c7552_test_set_1000.v \
+  c7552_test_set_5000.v \
+  c7552_test_set_10000.v \
+  c7552_test_set_100000.v \
+  c7552_test_set_1000000.v \
+  c7552_test_set_10000000.v \
+]
+
+foreach t $tests {
+  set patterns external $t
+  run fault_sim
+  puts "===== SUMMARY for $t ====="
+  report summaries
+}
+
+exit -force

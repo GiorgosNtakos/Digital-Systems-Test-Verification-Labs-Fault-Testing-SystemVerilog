@@ -1,0 +1,38 @@
+# tmax4_part3_faultsim_nd_atpg_fixed
+read netlist s1423_2chain_scan_netlist.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model s1423
+
+read test_protocol s1423_2chain.spf
+set simulation -basic_scan
+
+run drc
+
+# --- Stage A: Fault simulation with given patterns ---
+set_faults -model stuck
+create_faults -all
+
+set patterns external s1423_test_set.v
+run fault_sim
+report summaries
+
+# Export undetected faults from this test set
+write faults s1423_2chain_ND.dat -class ND -uncollapsed -replace
+
+# --- Stage B: ATPG ONLY for those ND faults ---
+delete_faults -all
+set_faults -model stuck
+read faults s1423_2chain_ND.dat
+
+run atpg
+report summaries
+
+# Save the extra patterns that target the previously ND faults
+write patterns s1423_2chain_fill_nd.v -format verilog_single_file -replace
+
+# Optional verification: show 100% on ND subset
+set patterns external s1423_2chain_fill_nd.v
+run fault_sim
+report summaries
+
+exit -force

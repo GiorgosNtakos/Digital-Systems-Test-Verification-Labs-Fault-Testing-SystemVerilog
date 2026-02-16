@@ -1,0 +1,153 @@
+WARNING:  file defined by STDMACROS environment variable was not found at:
+          '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/auxx/syn/stdmacros.dat'
+
+WARNING:  User's Guide 'tmax_ug.pdf' missing or no read permission. Was expected at:
+          '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/doc/test/tmax/tmax_ug.pdf'
+
+WARNING:  Test Pattern Validation Users Guide 'tpv_ug.pdf' missing or no read permission. Was expected at:
+          '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/doc/test/tpv_ug.pdf'
+
+                                  TetraMAX(R) 
+
+
+               Version N-2017.09-SP3 for linux64 - Jan 18, 2018  
+
+                    Copyright (c) 1996 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+
+
+read netlist s1423_scan_netlist.v
+ Begin reading netlist ( s1423_scan_netlist.v )...
+ End parsing Verilog file s1423_scan_netlist.v with 0 errors.
+ End reading netlist: #modules=145, top=s1423, #lines=1296, CPU_time=0.01 sec, Memory=0MB
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+ Begin reading netlists ( $UMC_LIB/verilog_simulation_models/*.v )...
+ End reading netlists: #files=506, #errors=0, #modules=460, top=NOR4M2D4, #lines=29130, CPU_time=0.26 sec, Memory=11MB
+run build_model s1423
+ ------------------------------------------------------------------------------
+ Begin build model for topcut = s1423 ...
+ ------------------------------------------------------------------------------
+ There were 973 primitives and 0 faultable pins removed during model optimizations
+ Warning: Rule B8 (unconnected module input pin) was violated 2 times.
+ Warning: Rule N21 (unsupported UDP entry) was violated 1 times.
+ End build model: #primitives=782, CPU_time=0.01 sec, Memory=1MB
+ ------------------------------------------------------------------------------
+ Begin learning analyses...
+ End learning analyses, total learning CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+set drc s1423.spf
+run drc
+ ------------------------------------------------------------------------------
+ Begin scan design rules checking...
+ ------------------------------------------------------------------------------
+ Begin reading test protocol file s1423.spf...
+ End parsing STIL file s1423.spf with 0 errors.
+ Test protocol file reading completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin simulating test protocol procedures...
+ Test protocol simulation completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin scan chain operation checking...
+ Chain 1 successfully traced with 74 scan_cells.
+ Scan chain operation checking completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin clock rules checking...
+ Clock rules checking completed, CPU time=0.00 sec.
+ Clock grouping results: #pairs=0, #groups=0, #serial_pairs=0, #disturbed_pairs=0, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin nonscan rules checking...
+ Nonscan cell summary: #DFF=0  #DLAT=0  #RAM_outs=0  tla_usage_type=none
+ Nonscan rules checking completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin DRC dependent learning...
+ Fast-sequential depth results: control=0(0), observe=0(0), detect=0(0), CPU time=0.00 sec
+ DRC dependent learning completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ DRC Summary Report
+ ------------------------------------------------------------------------------
+ No violations occurred during DRC process.
+ Design rules checking was successful, total CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+
+add faults -all
+ 3438 faults were added to fault list.
+
+run atpg
+ ATPG performed for stuck fault model using internal pattern source.
+ ----------------------------------------------------------
+ #patterns     #faults     #ATPG faults  test      process
+ stored     detect/active  red/au/abort  coverage  CPU time
+ ---------  -------------  ------------  --------  --------
+ Begin deterministic ATPG: #uncollapsed_faults=2909, abort_limit=10...
+ 29           2337    572         0/0/0    83.34%      0.00
+ 59            296    276         0/0/0    91.96%      0.01
+ 88            192     84         0/0/0    97.55%      0.02
+ 114            70     14         0/0/0    99.59%      0.02
+ 124            14      0         0/0/0   100.00%      0.03
+ 
+     Uncollapsed Stuck Fault Summary Report
+ -----------------------------------------------
+ fault class                     code   #faults
+ ------------------------------  ----  ---------
+ Detected                         DT       3434
+ Possibly detected                PT          0
+ Undetectable                     UD          4
+ ATPG untestable                  AU          0
+ Not detected                     ND          0
+ -----------------------------------------------
+ total faults                              3438
+ test coverage                           100.00%
+ -----------------------------------------------
+            Pattern Summary Report
+ -----------------------------------------------
+ #internal patterns                         124
+     #basic_scan patterns                   124
+ -----------------------------------------------
+write patterns s1423_myvectors.v -nocompaction -serial -type basic_scan -replace
+ 124 patterns of possible 124 patterns were selected based on type.
+ End writing file 's1423_myvectors.v' with 124 patterns, File_size = 23512, CPU_time = 0.0 sec.
+set pattern external s1423_myvectors.v
+ End parsing binary file s1423_myvectors.v with 0 errors.
+ End reading 124 patterns, CPU_time = 0.00 sec, Memory = 0MB
+set simulation -basic_scan
+reset state
+ Warning: Internal pattern set is now deleted. (M133)
+run fault_sim
+ Simulation performed for 2909 faults on circuit size of 782 gates.
+ --------------------------------------------
+ #patterns     #faults     test      process
+ simulated  detect/active  coverage  CPU time
+ ---------  -------------  --------  --------
+ 32           2372    537    84.36%      0.00
+ 64            293    244    92.89%      0.00
+ 96            184     60    98.25%      0.00
+ 124            60      0   100.00%      0.00
+ Fault simulation completed: #patterns=124, CPU time=0.00
+report summaries
+     Uncollapsed Stuck Fault Summary Report
+ -----------------------------------------------
+ fault class                     code   #faults
+ ------------------------------  ----  ---------
+ Detected                         DT       3434
+ Possibly detected                PT          0
+ Undetectable                     UD          4
+ ATPG untestable                  AU          0
+ Not detected                     ND          0
+ -----------------------------------------------
+ total faults                              3438
+ test coverage                           100.00%
+ -----------------------------------------------
+            Pattern Summary Report
+ -----------------------------------------------
+ #internal patterns                           0
+ #external patterns (s1423_myvectors.v)     124
+     #basic_scan patterns                   124
+ -----------------------------------------------
+
+
+
+
+quit

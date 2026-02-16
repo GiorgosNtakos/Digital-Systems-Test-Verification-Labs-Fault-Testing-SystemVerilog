@@ -1,0 +1,158 @@
+WARNING:  file defined by STDMACROS environment variable was not found at:
+          '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/auxx/syn/stdmacros.dat'
+
+WARNING:  User's Guide 'tmax_ug.pdf' missing or no read permission. Was expected at:
+          '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/doc/test/tmax/tmax_ug.pdf'
+
+WARNING:  Test Pattern Validation Users Guide 'tpv_ug.pdf' missing or no read permission. Was expected at:
+          '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/doc/test/tpv_ug.pdf'
+
+                                  TetraMAX(R) 
+
+
+               Version N-2017.09-SP3 for linux64 - Jan 18, 2018  
+
+                    Copyright (c) 1996 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+
+
+read netlist c3540_synth.v
+ Begin reading netlist ( c3540_synth.v )...
+ End parsing Verilog file c3540_synth.v with 0 errors.
+ End reading netlist: #modules=96, top=c3540, #lines=643, CPU_time=0.01 sec, Memory=0MB
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+ Begin reading netlists ( $UMC_LIB/verilog_simulation_models/*.v )...
+ End reading netlists: #files=506, #errors=0, #modules=435, top=NOR4M2D4, #lines=29130, CPU_time=0.25 sec, Memory=11MB
+run build_model c3540
+ ------------------------------------------------------------------------------
+ Begin build model for topcut = c3540 ...
+ ------------------------------------------------------------------------------
+ There were 52 primitives and 0 faultable pins removed during model optimizations
+ End build model: #primitives=958, CPU_time=0.02 sec, Memory=1MB
+ ------------------------------------------------------------------------------
+ Begin learning analyses...
+ End learning analyses, total learning CPU time=0.01 sec.
+ ------------------------------------------------------------------------------
+
+run drc
+ ------------------------------------------------------------------------------
+ Begin scan design rules checking...
+ ------------------------------------------------------------------------------
+ Begin simulating test protocol procedures...
+ Test protocol simulation completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin scan chain operation checking...
+ Scan chain operation checking completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin nonscan rules checking...
+ Nonscan cell summary: #DFF=0  #DLAT=0  #RAM_outs=0  tla_usage_type=none
+ Nonscan rules checking completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin DRC dependent learning...
+ Fast-sequential depth results: control=0(0), observe=0(0), detect=0(0), CPU time=0.00 sec
+ DRC dependent learning completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ DRC Summary Report
+ ------------------------------------------------------------------------------
+ No violations occurred during DRC process.
+ Design rules checking was successful, total CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+
+add faults -all
+ 4150 faults were added to fault list.
+set pattern random
+
+
+set random_patterns -length 1000000
+run atpg
+ ATPG performed for stuck fault model using random pattern source.
+ Simulation performed for 4150 faults on circuit size of 958 gates.
+ pattern source = 1000000 random patterns, capture clock = none
+ --------------------------------------------
+ #patterns     #faults     test      process
+ stored     detect/active  coverage  CPU time
+ ---------  -------------  --------  --------
+ 32           2676   1474    64.48%      0.01
+ 57            407   1067    74.29%      0.01
+ 76            284    783    81.13%      0.01
+ 88            209    574    86.17%      0.01
+ 102           121    453    89.08%      0.01
+ 112            77    376    90.94%      0.01
+ 124            61    315    92.41%      0.01
+ 127            18    297    92.84%      0.01
+ 137            43    254    93.88%      0.01
+ 144            22    232    94.41%      0.01
+ 150            18    214    94.84%      0.01
+ 157            19    195    95.30%      0.01
+ 161            10    185    95.54%      0.01
+ 164             6    179    95.69%      0.01
+ 169            19    160    96.14%      0.01
+ 171            11    149    96.41%      0.02
+ 172             2    147    96.46%      0.02
+ 176             9    138    96.67%      0.02
+ 178             2    136    96.72%      0.02
+ 179             1    135    96.75%      0.02
+ 180             2    133    96.80%      0.02
+ 184            11    122    97.06%      0.02
+ 185             1    121    97.08%      0.02
+ 186             2    119    97.13%      0.02
+ 188            15    104    97.49%      0.02
+ 192            15     89    97.86%      0.02
+ 194             7     82    98.02%      0.02
+ 196             8     74    98.22%      0.02
+ 197             1     73    98.24%      0.02
+ 198            13     60    98.55%      0.02
+ 200             9     51    98.77%      0.02
+ 201             1     50    98.80%      0.02
+ 202             2     48    98.84%      0.02
+ 203             4     44    98.94%      0.02
+ 204             1     43    98.96%      0.02
+ 206             7     36    99.13%      0.02
+ 207             4     32    99.23%      0.02
+ 208             1     31    99.25%      0.02
+ 209             1     30    99.28%      0.02
+ 211            10     20    99.52%      0.02
+ 212             3     17    99.59%      0.02
+ 213             1     16    99.61%      0.02
+ 214             1     15    99.64%      0.02
+ 215             1     14    99.66%      0.02
+ 216             2     12    99.71%      0.02
+ 217             2     10    99.76%      0.02
+ 218             1      9    99.78%      0.02
+ 219             1      8    99.81%      0.03
+ 220             1      7    99.83%      0.03
+ 222             2      5    99.88%      0.03
+ 223             1      4    99.90%      0.03
+ 224             1      3    99.93%      0.03
+ 225             1      2    99.95%      0.04
+ 226             1      1    99.98%      0.06
+ Fault simulation completed: #patterns=1000000, CPU time=1.84
+ 
+     Uncollapsed Stuck Fault Summary Report
+ -----------------------------------------------
+ fault class                     code   #faults
+ ------------------------------  ----  ---------
+ Detected                         DT       4149
+ Possibly detected                PT          0
+ Undetectable                     UD          0
+ ATPG untestable                  AU          0
+ Not detected                     ND          1
+ -----------------------------------------------
+ total faults                              4150
+ test coverage                            99.98%
+ -----------------------------------------------
+            Pattern Summary Report
+ -----------------------------------------------
+ #internal patterns                         226
+     #basic_scan patterns                   226
+ -----------------------------------------------
+
+
+
+
+
+quit
+ Warning: Unsaved test patterns (M29) - confirm session exit (Yes,No) : 

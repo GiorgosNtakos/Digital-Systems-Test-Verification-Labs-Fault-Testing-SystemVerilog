@@ -1,0 +1,11 @@
+# mykuklwma
+INPUT(A)
+INPUT(B)
+INPUT(C)
+INPUT(D)
+INPUT(E)
+OUTPUT(F)
+gate1 = AND(A, B)
+gate2 = AND(C, D)
+gate3 = OR(gate1, gate2)
+F = AND(gate3, E)

@@ -1,0 +1,20 @@
+read netlist c7552_synth.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model c7552
+run drc
+
+# Fault model + read only the ND faults
+set_faults -model stuck
+read faults not_detected_faults.dat
+
+# Generate tests only for those faults
+run atpg
+report summaries
+
+# OPTIONAL: write patterns and verify via fault_sim
+write patterns myvectors.v -format verilog_single_file -replace
+set patterns external myvectors.v
+run fault_sim
+report summaries
+
+exit -force

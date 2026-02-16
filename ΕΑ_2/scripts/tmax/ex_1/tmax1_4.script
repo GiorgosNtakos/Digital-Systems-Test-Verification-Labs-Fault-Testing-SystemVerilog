@@ -1,0 +1,15 @@
+read netlist c1355_synth.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model c1355
+run drc
+
+# Fault list provided by file
+read faults c1355_faults.dat
+
+set pattern external c1355_test_set.v
+run fault_sim
+report summaries
+
+write faults c1355_undetected_A4.dat -class ND -uncollapsed -replace
+
+exit

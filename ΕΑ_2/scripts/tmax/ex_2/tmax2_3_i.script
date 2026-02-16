@@ -1,0 +1,12 @@
+read netlist c7552_synth.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model c7552
+run drc
+
+set_faults -model stuck
+create_faults -all
+
+set atpg -coverage 97.5
+run atpg
+report summaries
+exit -force

@@ -1,0 +1,21 @@
+# tmax4_part2_atpg_fixed
+read netlist s1423_1chain_scan_netlist.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model s1423
+
+# Load scan protocol
+read test_protocol s1423_1chain.spf
+set simulation -basic_scan
+
+run drc
+
+set_faults -model stuck
+create_faults -all
+
+run atpg
+report summaries
+
+# save patterns (useful for verification)
+write patterns s1423_1chain_atpg.v -format verilog_single_file -replace
+
+exit -force

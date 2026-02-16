@@ -1,0 +1,14 @@
+* Name of circuit:  mykuklwma.bench
+* Primary inputs :
+  A B C D E 
+  
+* Primary outputs:
+  F 
+
+* Test patterns and fault free responses:
+
+   1: 11001 1
+   2: 01011 0
+   3: 00111 1
+   4: 10101 0
+   5: 11100 0

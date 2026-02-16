@@ -1,0 +1,348 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version N-2017.09-SP3 for linux64 - Jan 18, 2018 
+
+                    Copyright (c) 1988 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+
+ ┌────────────────────────────────────────────────────────────────────────────┐ 
+ │                                                                            │ 
+ │               Provided by EUROPRACTICE DESIGN TOOLS service.               │ 
+ │                             (2017/18 Release)                              │ 
+ │                                                                            │ 
+ │ For details of additional EDA design tools, design flows, training         │ 
+ │ technical support please contact the Microelectronics Support Centre.      │ 
+ │                                                                            │ 
+ │                      Microelectronics Support Centre                       │ 
+ │                 Science and Technology Facilities Council                  │ 
+ │                       Rutherford Appleton Laboratory                       │ 
+ │                               Harwell Oxford                               │ 
+ │                                Oxfordshire                                 │ 
+ │                                 OX11 0QX                                   │ 
+ │                               United Kingdom                               │ 
+ │                                                                            │ 
+ │                              +44 1235 445327                               │ 
+ │                     MicroelectronicsCentre@stfc.ac.uk                      │ 
+ │                        wwww.europractice.stfc.ac.uk                        │ 
+ │                                                                            │ 
+ └────────────────────────────────────────────────────────────────────────────┘ 
+
+set mydesign c3540
+c3540
+remove_design -all
+1
+analyze -f verilog ${mydesign}.v
+Running PRESTO HDLC
+Compiling source file ./c3540.v
+Presto compilation completed successfully.
+Loading db file '/localdisk/libraries/UMCL18U250D2_2.4/design_compiler/umcl18u250t2_wc.db'
+1
+elaborate $mydesign
+Loading db file '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/libraries/syn/gtech.db'
+Loading db file '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/libraries/syn/standard.sldb'
+Warning: The library named umcl18u250t2_wc specifies a very small trip-point value (0). (TIM-163)
+Warning: The library named umcl18u250t2_wc specifies a very small trip-point value (0). (TIM-163)
+  Loading link library 'umcl18u250t2_wc'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'c3540'.
+1
+current_design $mydesign
+Current design is 'c3540'.
+{c3540}
+create_clock -period 8  -name clk
+Warning: Creating virtual clock named 'clk' with no sources. (UID-348)
+1
+set_clock_latency    2  clk
+1
+set_input_delay      2 -clock clk [remove_from_collection [all_inputs] clk]
+Warning: Nothing implicitly matched 'clk' (SEL-003)
+1
+set_output_delay     2 -clock clk [all_outputs]
+1
+set_driving_cell -library umcl18u250t2_wc -lib_cell INVD1 [remove_from_collection [all_inputs] clk]
+Warning: Nothing implicitly matched 'clk' (SEL-003)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+1
+set_load 0.1 [all_outputs]
+1
+set_max_fanout 8 [all_inputs]
+1
+set_fanout_load 8 [all_outputs]
+1
+set_max_area 0
+1
+compile
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | N-2017.09-DWBB_201709.3 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'c3540'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04   12220.8      0.15       0.4      21.1                          
+    0:00:04   12220.8      0.15       0.4      21.1                          
+    0:00:04   12220.8      0.15       0.4      21.1                          
+    0:00:05   12220.8      0.15       0.4      21.1                          
+    0:00:05   12220.8      0.15       0.4      21.1                          
+    0:00:05   10456.4      0.61       1.9      21.1                          
+    0:00:05   10509.3      0.42       0.8      21.1                          
+    0:00:05   10497.0      0.36       0.9      21.1                          
+    0:00:05   10525.5      0.29       0.7      21.1                          
+    0:00:05   10537.7      0.22       0.5      21.1                          
+    0:00:05   10533.6      0.19       0.4      21.1                          
+    0:00:05   10541.8      0.19       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10781.6      0.16       0.4      21.1                          
+    0:00:06   10854.8      0.11       0.2      21.1 N5231                    
+    0:00:06   10871.1      0.10       0.2      21.1                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06   10871.1      0.10       0.2      21.1                          
+    0:00:06   11074.4      0.10       0.2      21.1 N5360                    
+    0:00:06   11407.7      0.08       0.1      21.1 N5231                    
+    0:00:07   11647.6      0.04       0.1      21.1 N5360                    
+    0:00:07   11517.5      0.00       0.0      21.1                          
+    0:00:07   11517.5      0.00       0.0      21.1                          
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_fanout)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:07   11517.5      0.00       0.0      21.1                          
+    0:00:07   11643.5      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (max_area 0)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:07   11643.5      0.00       0.0       0.0                          
+    0:00:07   11643.5      0.00       0.0       0.0                          
+    0:00:07   10838.6      0.00       0.0       0.0                          
+    0:00:07   10785.7      0.00       0.0       0.0                          
+    0:00:07   10785.7      0.00       0.0       0.0                          
+    0:00:07   10785.7      0.00       0.0       0.0                          
+    0:00:07   10785.7      0.00       0.0       0.0                          
+    0:00:07   10785.7      0.00       0.0       0.0                          
+    0:00:07   10610.9      0.07       0.1       0.0                          
+    0:00:07   10554.0      0.07       0.2       0.0                          
+    0:00:07   10549.9      0.07       0.2       0.0                          
+    0:00:07   10549.9      0.07       0.2       0.0                          
+    0:00:07   10549.9      0.07       0.2       0.0                          
+    0:00:07   10549.9      0.07       0.2       0.0                          
+    0:00:07   10549.9      0.07       0.2       0.0                          
+    0:00:07   10549.9      0.07       0.2       0.0                          
+    0:00:07   10680.0      0.01       0.0       0.0 N5360                    
+    0:00:08   10663.7      0.00       0.0       0.0                          
+    0:00:08   10537.7      0.02       0.0       0.0                          
+    0:00:08   10497.1      0.02       0.0       0.0                          
+    0:00:08   10497.1      0.02       0.0       0.0                          
+    0:00:08   10497.1      0.02       0.0       0.0                          
+    0:00:08   10497.1      0.02       0.0       0.0                          
+    0:00:08   10497.1      0.02       0.0       0.0                          
+    0:00:08   10497.1      0.02       0.0       0.0                          
+    0:00:08   10521.4      0.01       0.0       0.0                          
+    0:00:08   10761.3      0.00       0.0       0.0                          
+Loading db file '/localdisk/libraries/UMCL18U250D2_2.4/design_compiler/umcl18u250t2_wc.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+check_design
+1
+report_constraint -all_violators
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : c3540
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 01:37:02 2021
+****************************************
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   c3540                        0.00       10761.32       -10761.32 (VIOLATED)
+
+
+1
+write -format verilog -hierarchy -output ${mydesign}_synth.v
+Writing verilog file '/localdisk/users/gnta/vlsi_testing_lab2/exercise2/c3540_synth.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+write -format verilog -hierarchy -output ${mydesign}_synth.v
+Writing verilog file '/localdisk/users/gnta/vlsi_testing_lab2/exercise2/c3540_synth.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+write_sdf ${mydesign}_synth.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/localdisk/users/gnta/vlsi_testing_lab2/exercise2/c3540_synth.sdf'. (WT-3)
+1
+write_sdc  ${mydesign}.sdc
+1
+exit
+Thank you...

@@ -1,0 +1,2642 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version N-2017.09-SP3 for linux64 - Jan 18, 2018 
+
+                    Copyright (c) 1988 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+
+ ┌────────────────────────────────────────────────────────────────────────────┐ 
+ │                                                                            │ 
+ │               Provided by EUROPRACTICE DESIGN TOOLS service.               │ 
+ │                             (2017/18 Release)                              │ 
+ │                                                                            │ 
+ │ For details of additional EDA design tools, design flows, training         │ 
+ │ technical support please contact the Microelectronics Support Centre.      │ 
+ │                                                                            │ 
+ │                      Microelectronics Support Centre                       │ 
+ │                 Science and Technology Facilities Council                  │ 
+ │                       Rutherford Appleton Laboratory                       │ 
+ │                               Harwell Oxford                               │ 
+ │                                Oxfordshire                                 │ 
+ │                                 OX11 0QX                                   │ 
+ │                               United Kingdom                               │ 
+ │                                                                            │ 
+ │                              +44 1235 445327                               │ 
+ │                     MicroelectronicsCentre@stfc.ac.uk                      │ 
+ │                        wwww.europractice.stfc.ac.uk                        │ 
+ │                                                                            │ 
+ └────────────────────────────────────────────────────────────────────────────┘ 
+
+####################################################################
+# Simple script to synthesize a design and prepare it for tetramax
+####################################################################
+# define variables for the design name and the clock name
+set mydesign s5378
+s5378
+set myclk CK
+CK
+# clear any previously loaded designs
+remove_design -all
+1
+# Analyzes  the specified HDL source files; stores the design templates 
+# they define into the specified library in a format  ready to elaborate 
+# and specialize as needed to link a full design.
+analyze -f verilog ${mydesign}.v
+Running PRESTO HDLC
+Compiling source file ./s5378.v
+Presto compilation completed successfully.
+Loading db file '/localdisk/libraries/UMCL18U250D2_2.4/design_compiler/umcl18u250t2_wc.db'
+1
+# Builds  a  design from the intermediate format of a Verilog module, 
+# a VHDL entity and architecture, or a VHDL configuration.
+elaborate ${mydesign}
+Loading db file '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/libraries/syn/gtech.db'
+Loading db file '/eda/synopsys/2017-18/RHELx86/SYN_2017.09-SP3/libraries/syn/standard.sldb'
+Warning: The library named umcl18u250t2_wc specifies a very small trip-point value (0). (TIM-163)
+Warning: The library named umcl18u250t2_wc specifies a very small trip-point value (0). (TIM-163)
+  Loading link library 'umcl18u250t2_wc'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 's5378'.
+Information: Building the design 'dff'. (HDL-193)
+
+Inferred memory devices in process
+	in routine dff line 3340 in file
+		'./s5378.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        Q_reg        | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+1
+#  Set the working design.
+current_design ${mydesign}
+Current design is 's5378'.
+{s5378}
+# Create a  clock object and define its waveform in the current design.
+create_clock -period 4  ${myclk}
+1
+# Specify the clock network latency
+set_clock_latency    2  ${myclk}
+1
+# Sets input delay on input ports relative to the clock signal
+# (clock is excluded)
+set_input_delay 2 -clock ${myclk} [remove_from_collection [all_inputs] ${myclk}]
+1
+# Sets  output  delay  on output ports relative to the clock signal
+set_output_delay 2 -clock ${myclk} [all_outputs]
+1
+# Sets  attributes  on  input ports of the current design
+# that specify that a library cell or output pin of a library cell
+# drives the specified ports.
+set_driving_cell -library umcl18u250t2_wc -lib_cell INVD1 [remove_from_collection [all_inputs] ${myclk}]
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+1
+# Sets the load attribute (capacitance in library units) on the specified ports and nets
+set_load 0.1 [all_outputs]
+1
+#Sets  the max_fanout attribute to a specified value on specified
+#input ports and designs.
+set_max_fanout 8 [all_inputs]
+1
+#Set the fanout_load attribute on the specified output ports of
+#the current design (in units of the target library)
+set_fanout_load 2 [all_outputs]
+1
+#Set the max_area attribute to a specified value on the current design.
+set_max_area 0
+1
+#Perform logic-level  and gate-level synthesis and optimization on the current design.
+compile
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | N-2017.09-DWBB_201709.3 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'dff_0'
+  Processing 's5378'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+  Mapping Optimization (Phase 3)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:07   30096.7      1.34      31.8       0.0                          
+    0:00:07   30096.7      1.34      31.8       0.0                          
+    0:00:07   30096.7      1.34      31.8       0.0                          
+    0:00:07   30092.6      1.34      31.8       0.0                          
+    0:00:07   30092.6      1.34      31.8       0.0                          
+    0:00:08   25474.1      1.41      38.3       0.0                          
+    0:00:08   25506.6      1.42      37.5       0.0                          
+    0:00:08   25490.3      1.41      37.5       0.0                          
+    0:00:09   25510.7      1.40      37.3       0.0                          
+    0:00:09   25502.5      1.40      37.3       0.0                          
+    0:00:09   25498.5      1.40      37.3       0.0                          
+    0:00:09   25502.5      1.40      37.3       0.0                          
+    0:00:09   25498.5      1.40      37.3       0.0                          
+    0:00:09   25502.5      1.40      37.3       0.0                          
+    0:00:09   25498.5      1.40      37.3       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25506.6      1.40      37.2       0.0                          
+    0:00:09   25636.7      1.32      36.6       0.0 n3135gat                 
+    0:00:09   25644.8      1.32      36.6       0.0                          
+    0:00:10   25657.0      1.32      37.1       0.0                          
+    0:00:10   25669.2      1.32      37.0       0.0                          
+    0:00:10   26128.6      1.32      36.8       0.0                          
+    0:00:10   26356.3      1.31      36.7       0.0                          
+    0:00:10   26360.4      1.31      36.7       0.0                          
+    0:00:10   26392.9      1.30      36.4       0.0                          
+    0:00:10   26392.9      1.30      36.4       0.0                          
+    0:00:10   26405.1      1.30      36.4       0.0                          
+    0:00:10   26429.5      1.30      36.1       0.0                          
+    0:00:10   26836.0      1.30      36.1       0.0                          
+    0:00:11   26840.1      1.30      36.1       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:11   26840.1      1.30      36.1       0.0                          
+    0:00:11   26852.3      1.29      36.0       0.0 n3117gat                 
+    0:00:11   26848.2      1.29      36.0       0.0 n3136gat                 
+    0:00:11   26868.6      1.29      36.0       0.0 n3135gat                 
+    0:00:11   26836.0      1.28      35.9       0.0 n3117gat                 
+    0:00:11   27063.7      1.27      35.5       0.0 n3125gat                 
+    0:00:11   27080.0      1.27      35.5       0.0 n3136gat                 
+    0:00:11   27271.1      1.26      35.4       0.0 n3132gat                 
+    0:00:11   27279.2      1.26      35.4       0.0 n3137gat                 
+    0:00:11   27295.5      1.26      35.4       0.0 n3117gat                 
+    0:00:11   27303.6      1.26      35.3       0.0 n3133gat                 
+    0:00:12   27311.7      1.26      35.4       0.0 n3117gat                 
+    0:00:12   27319.9      1.26      35.4       0.0                          
+    0:00:12   27319.9      1.26      35.4       0.0                          
+    0:00:12   27319.9      1.26      35.3       0.0 n3118gat                 
+    0:00:12   27311.7      1.26      35.4       0.0 n3122gat                 
+    0:00:12   27291.4      1.26      35.3       0.0 n3136gat                 
+    0:00:13   27303.6      1.26      35.3       0.0 n3136gat                 
+    0:00:13   27311.7      1.25      35.3       0.0 n3122gat                 
+    0:00:13   27502.8      1.25      35.3       0.0 n3122gat                 
+    0:00:13   27498.7      1.25      35.2       0.0 n3117gat                 
+    0:00:13   27502.8      1.25      35.2       0.0                          
+    0:00:13   27706.1      1.25      35.2       0.0                          
+    0:00:13   27706.1      1.25      35.2       0.0                          
+    0:00:13   27714.2      1.25      35.2       0.0                          
+    0:00:13   27718.2      1.25      34.8       0.0                          
+    0:00:14   27722.3      1.25      34.8       0.0                          
+    0:00:14   27502.8      1.25      34.6       0.0                          
+    0:00:14   27754.9      1.25      33.8       0.0                          
+    0:00:14   27779.2      1.25      33.3       0.0                          
+    0:00:14   27775.2      1.25      33.3       0.0                          
+    0:00:14   28002.8      1.25      32.7       0.0                          
+    0:00:14   28002.8      1.25      32.6       0.0                          
+
+
+  Beginning Area-Recovery Phase  (max_area 0)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:14   28002.8      1.25      32.6       0.0                          
+    0:00:14   28002.8      1.25      32.6       0.0                          
+    0:00:14   27242.6      1.25      32.6       0.0                          
+    0:00:14   27226.4      1.25      32.6       0.0                          
+    0:00:14   27226.4      1.25      32.6       0.0                          
+    0:00:14   27226.4      1.25      32.6       0.0                          
+    0:00:14   27226.4      1.25      32.6       0.0                          
+    0:00:14   27226.4      1.25      32.6       0.0                          
+    0:00:14   26071.7      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:14   25872.5      1.25      32.6       0.0                          
+    0:00:15   25815.6      1.25      32.6       0.0                          
+    0:00:15   25815.6      1.25      32.6       0.0                          
+    0:00:15   25815.6      1.25      32.6       0.0                          
+    0:00:15   25815.6      1.25      32.6       0.0                          
+    0:00:15   25815.6      1.25      32.6       0.0                          
+    0:00:15   25815.6      1.25      32.6       0.0                          
+    0:00:15   25819.6      1.25      32.6       0.0 n3134gat                 
+    0:00:15   25835.9      1.24      32.6       0.0 n3117gat                 
+    0:00:15   25844.0      1.24      32.6       0.0                          
+    0:00:15   25848.1      1.24      32.6       0.0                          
+    0:00:15   25868.4      1.24      32.6       0.0                          
+    0:00:15   26059.5      1.24      32.6       0.0                          
+    0:00:15   26059.5      1.24      32.6       0.0                          
+    0:00:16   26266.8      1.24      32.6       0.0                          
+    0:00:16   26254.6      1.24      32.5       0.0                          
+    0:00:16   26250.6      1.24      32.5       0.0                          
+    0:00:16   26250.6      1.24      32.5       0.0                          
+    0:00:16   26254.6      1.24      32.4       0.0                          
+    0:00:16   26246.5      1.24      32.4       0.0                          
+    0:00:16   26279.0      1.24      32.4       0.0                          
+    0:00:16   26275.0      1.24      32.6       0.0 n3121gat                 
+    0:00:16   26275.0      1.24      32.6       0.0 n3118gat                 
+    0:00:16   26279.0      1.24      32.6       0.0 n3132gat                 
+    0:00:16   26307.5      1.24      32.6       0.0 n3132gat                 
+    0:00:17   26327.8      1.24      32.6       0.0 n3121gat                 
+    0:00:17   26335.9      1.24      32.6       0.0 n3135gat                 
+    0:00:17   26335.9      1.24      32.6       0.0 n3133gat                 
+    0:00:17   26327.8      1.24      32.6       0.0 n3132gat                 
+    0:00:17   26315.6      1.23      32.6       0.0 n3132gat                 
+    0:00:17   26315.6      1.23      32.6       0.0 n3130gat                 
+    0:00:17   26315.6      1.23      32.6       0.0 n3129gat                 
+    0:00:17   26311.5      1.23      32.6       0.0                          
+Loading db file '/localdisk/libraries/UMCL18U250D2_2.4/design_compiler/umcl18u250t2_wc.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+#Check the current design for consistency
+check_design
+ 
+****************************************
+check_design summary:
+Version:     N-2017.09-SP3
+Date:        Fri Oct  1 04:46:12 2021
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                      7
+    Shorted outputs (LINT-31)                                       4
+    Constant outputs (LINT-52)                                      3
+--------------------------------------------------------------------------------
+
+Warning: In design 's5378', output port 'n3112gat' is connected directly to output port 'n3115gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3112gat' is connected directly to output port 'n3152gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3139gat' is connected directly to output port 'n3140gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3141gat' is connected directly to output port 'n3142gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3112gat' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 's5378', output port 'n3115gat' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 's5378', output port 'n3152gat' is connected directly to 'logic 1'. (LINT-52)
+1
+# Display  a  summary  of all of the optimization and design rule
+# constraints with violations in the current design
+report_constraint -all_violators
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:12 2021
+****************************************
+
+
+   max_delay/setup ('CK' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   n3137gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3117gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3135gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3121gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3130gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3132gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3134gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3129gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3136gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3131gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3118gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3120gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3133gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3119gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3122gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3123gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3124gat                     4.00           5.20 r        -1.20  (VIOLATED)
+   n3125gat                     4.00           5.19 f        -1.19  (VIOLATED)
+   n3105gat                     4.00           5.10 r        -1.10  (VIOLATED)
+   n3104gat                     4.00           5.10 r        -1.10  (VIOLATED)
+   n3151gat                     4.00           5.06 r        -1.06  (VIOLATED)
+   n3139gat                     4.00           4.79 r        -0.79  (VIOLATED)
+   n3140gat                     4.00           4.79 r        -0.79  (VIOLATED)
+   DFF_56/Q_reg/D               5.92           6.35 f        -0.43  (VIOLATED)
+   DFF_51/Q_reg/D               5.92           6.33 f        -0.41  (VIOLATED)
+   DFF_52/Q_reg/D               5.92           6.33 f        -0.41  (VIOLATED)
+   DFF_53/Q_reg/D               5.92           6.33 f        -0.41  (VIOLATED)
+   DFF_55/Q_reg/D               5.92           6.33 f        -0.41  (VIOLATED)
+   DFF_42/Q_reg/D               5.94           6.32 f        -0.38  (VIOLATED)
+   DFF_43/Q_reg/D               5.94           6.32 f        -0.38  (VIOLATED)
+   DFF_44/Q_reg/D               5.94           6.32 f        -0.38  (VIOLATED)
+   DFF_46/Q_reg/D               5.94           6.32 f        -0.38  (VIOLATED)
+   DFF_45/Q_reg/D               5.94           6.32 f        -0.38  (VIOLATED)
+   n3141gat                     4.00           4.38 r        -0.38  (VIOLATED)
+   n3142gat                     4.00           4.38 r        -0.38  (VIOLATED)
+   n3144gat                     4.00           4.34 r        -0.34  (VIOLATED)
+   n3143gat                     4.00           4.33 r        -0.33  (VIOLATED)
+   n3138gat                     4.00           4.29 r        -0.29  (VIOLATED)
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   s5378                        0.00       26311.54       -26311.54 (VIOLATED)
+
+
+1
+# Write output files
+write -format verilog -hierarchy -output ${mydesign}_synth.v
+Writing verilog file '/localdisk/users/gnta/vlsi_testing_lab2/exercise3/s5378_synth.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+write_sdf ${mydesign}_synth.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/localdisk/users/gnta/vlsi_testing_lab2/exercise3/s5378_synth.sdf'. (WT-3)
+1
+write_sdc  ${mydesign}.sdc
+1
+# create reports
+report_timing
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:13 2021
+****************************************
+
+Operating Conditions: nom_pvt   Library: umcl18u250t2_wc
+Wire Load Model Mode: top
+
+  Startpoint: n3093gat (input port clocked by CK)
+  Endpoint: n3137gat (output port clocked by CK)
+  Path Group: CK
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock CK (rise edge)                     0.00       0.00
+  clock network delay (ideal)              2.00       2.00
+  input external delay                     2.00       4.00 f
+  n3093gat (in)                            0.06       4.06 f
+  U770/Z (NAN2D1)                          0.13       4.18 r
+  U619/Z (NAN2D1)                          0.10       4.28 f
+  U645/Z (INVBD2)                          0.08       4.36 r
+  U657/Z (INVDL)                           0.04       4.40 f
+  U1136/Z (OAI31DL)                        0.16       4.56 r
+  U1132/Z (AOI31DL)                        0.12       4.68 f
+  U1109/Z (OAI211D1)                       0.13       4.81 r
+  U740/Z (OAI22M10D1)                      0.23       5.05 r
+  U608/Z (BUFD4)                           0.19       5.23 r
+  n3137gat (out)                           0.00       5.23 r
+  data arrival time                                   5.23
+
+  clock CK (rise edge)                     4.00       4.00
+  clock network delay (ideal)              2.00       6.00
+  output external delay                   -2.00       4.00
+  data required time                                  4.00
+  -----------------------------------------------------------
+  data required time                                  4.00
+  data arrival time                                  -5.23
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -1.23
+
+
+1
+####################################################################
+# Testing Part...
+####################################################################
+set test_default_delay       0
+0
+set test_default_bidir_delay 0
+0
+set test_default_strobe      40
+40
+set test_default_period      100
+100
+set test_default_scan_style multiplexed_flip_flop
+multiplexed_flip_flop
+set_scan_configuration -create_dedicated_scan_out_ports true
+Accepted scan configuration for modes: all_dft
+1
+create_test_protocol -infer_async -infer_clock
+In mode: all_dft...
+
+Information: Starting test protocol creation. (TEST-219)
+  ...inferring clock signals...
+Information: Inferred system/test clock port CK (45.0,55.0). (TEST-260)
+  ...inferring asynchronous signals...
+1
+compile -scan
+Information: Choosing a test methodology will restrict the optimization of sequential cells. (UIO-12)
+
+Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'dff_1'
+  Processing 'dff_37'
+  Processing 'dff_57'
+  Processing 's5378'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 4)
+  Mapping Optimization (Phase 5)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06   34776.2      1.35      32.2       0.0                          
+    0:00:08   34776.2      1.35      32.2       0.0                          
+    0:00:08   34776.2      1.35      32.2       0.0                          
+    0:00:08   34764.0      1.35      32.0       0.0                          
+    0:00:08   34764.0      1.35      32.0       0.0                          
+    0:00:08   31312.1      1.50      33.5       0.0                          
+    0:00:08   31360.9      1.56      36.2       0.0                          
+    0:00:09   31364.9      1.44      33.3       0.0                          
+    0:00:09   31385.2      1.40      32.6       0.0                          
+    0:00:09   31393.4      1.38      32.5       0.0                          
+    0:00:09   31397.5      1.38      32.4       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31421.8      1.36      32.7       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:09   31421.8      1.36      32.7       0.0                          
+    0:00:09   31446.3      1.34      32.2       0.0 n3117gat                 
+    0:00:10   31458.4      1.34      32.1       0.0 n3131gat                 
+    0:00:10   31474.7      1.33      32.1       0.0 n3136gat                 
+    0:00:10   31482.8      1.33      32.0       1.0 n3136gat                 
+    0:00:10   31486.9      1.33      32.0       1.0 n3121gat                 
+    0:00:10   31491.0      1.31      32.4       0.0 n3134gat                 
+    0:00:10   31482.8      1.31      32.3       0.0 n3135gat                 
+    0:00:10   31503.2      1.30      32.2       0.0 n3120gat                 
+    0:00:10   31515.4      1.30      32.1       0.0 n3129gat                 
+    0:00:10   31714.6      1.29      32.1       0.0 n3137gat                 
+    0:00:10   31958.5      1.29      32.1       0.0 n3119gat                 
+    0:00:11   32003.2      1.28      32.0       0.0 n3117gat                 
+    0:00:11   32031.7      1.28      32.0       0.0 n3131gat                 
+    0:00:11   32043.9      1.28      32.0       0.0 n3129gat                 
+    0:00:11   32043.9      1.28      31.9       0.0 n3124gat                 
+    0:00:11   32043.9      1.28      31.9       0.0 n3131gat                 
+    0:00:11   32064.2      1.28      31.9       0.0 n3121gat                 
+    0:00:11   32434.2      1.27      31.7       0.0 n3124gat                 
+    0:00:11   32430.1      1.27      31.7       0.0 n3124gat                 
+    0:00:11   32430.1      1.27      31.6       0.0 n3134gat                 
+    0:00:11   32848.9      1.26      31.6       0.0 n3124gat                 
+    0:00:11   33255.4      1.26      31.5       0.0 n3129gat                 
+    0:00:11   33267.6      1.26      31.5       0.0 n3131gat                 
+    0:00:12   33454.6      1.26      31.4       0.0 n3137gat                 
+    0:00:12   33470.9      1.25      31.2       0.0 n3124gat                 
+    0:00:12   33483.1      1.25      31.2       0.0 n3129gat                 
+    0:00:12   33495.3      1.24      31.1       0.0 n3129gat                 
+    0:00:12   33544.1      1.24      31.1       0.0 n3135gat                 
+    0:00:12   33353.0      1.24      30.9       0.0 n3135gat                 
+    0:00:12   33361.1      1.23      30.8       0.0 n3136gat                 
+    0:00:12   33361.1      1.23      30.8       0.0 n3136gat                 
+    0:00:12   33361.1      1.23      30.8       0.0 n3124gat                 
+    0:00:12   33361.1      1.23      30.8       0.0 n3135gat                 
+    0:00:12   33365.2      1.23      30.8       0.0 n3123gat                 
+    0:00:13   33365.2      1.23      30.8       0.0 n3129gat                 
+    0:00:13   33365.2      1.23      30.8       0.0                          
+    0:00:13   33365.2      1.23      30.8       0.0                          
+    0:00:13   33365.2      1.23      30.8       0.0                          
+    0:00:14   33381.4      1.23      30.7       0.0                          
+    0:00:14   33385.5      1.23      30.7       0.0                          
+    0:00:14   33397.7      1.23      30.2       0.0                          
+    0:00:14   33397.7      1.23      30.2       0.0                          
+    0:00:14   33385.5      1.23      30.0       0.0                          
+    0:00:14   33385.5      1.23      30.0       0.0                          
+    0:00:14   33381.4      1.23      29.6       0.0                          
+    0:00:14   33446.5      1.23      29.5       0.0                          
+
+
+  Beginning Area-Recovery Phase  (max_area 0)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:14   33446.5      1.23      29.5       0.0                          
+    0:00:14   33446.5      1.23      29.5       0.0                          
+    0:00:14   33218.8      1.23      29.4       0.0                          
+    0:00:14   33218.8      1.23      29.4       0.0                          
+    0:00:14   33218.8      1.23      29.4       0.0                          
+    0:00:14   33218.8      1.23      29.4       0.0                          
+    0:00:14   33218.8      1.23      29.4       0.0                          
+    0:00:14   31877.2      1.23      29.4       0.0                          
+    0:00:14   31848.7      1.23      29.4       0.0                          
+    0:00:14   31848.7      1.23      29.4       0.0                          
+    0:00:14   31848.7      1.23      29.4       0.0                          
+    0:00:14   31848.7      1.23      29.4       0.0                          
+    0:00:14   31848.7      1.23      29.4       0.0                          
+    0:00:14   31848.7      1.23      29.4       0.0                          
+    0:00:15   31844.6      1.23      29.4       0.0                          
+    0:00:15   31812.1      1.23      29.4       0.0                          
+    0:00:15   31812.1      1.23      29.4       0.0                          
+    0:00:15   31812.1      1.23      29.4       0.0                          
+    0:00:15   31812.1      1.23      29.4       0.0                          
+    0:00:15   31812.1      1.23      29.4       0.0                          
+    0:00:15   31812.1      1.23      29.4       0.0                          
+    0:00:15   31824.3      1.23      29.4       0.0                          
+    0:00:15   31824.3      1.23      29.4       0.0                          
+    0:00:15   32011.3      1.23      29.4       0.0                          
+    0:00:15   32214.6      1.23      29.4       0.0                          
+    0:00:15   32198.3      1.23      29.4       0.0                          
+    0:00:15   32194.3      1.23      29.4       0.0                          
+    0:00:16   32609.0      1.23      29.4       0.0                          
+    0:00:16   32584.6      1.23      29.3       0.0                          
+    0:00:16   31121.2      1.23      29.3       0.0                          
+Loading db file '/localdisk/libraries/UMCL18U250D2_2.4/design_compiler/umcl18u250t2_wc.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+report_constraint -all_violators
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:31 2021
+****************************************
+
+
+   max_delay/setup ('CK' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   n3137gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3130gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3124gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3131gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3134gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3135gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3129gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3136gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3117gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3119gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3132gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3123gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3133gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3120gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3121gat                     4.00           5.20 r        -1.20  (VIOLATED)
+   n3118gat                     4.00           5.19 r        -1.19  (VIOLATED)
+   n3125gat                     4.00           5.19 r        -1.19  (VIOLATED)
+   n3104gat                     4.00           5.16 f        -1.16  (VIOLATED)
+   n3122gat                     4.00           5.15 r        -1.15  (VIOLATED)
+   n3105gat                     4.00           5.15 r        -1.15  (VIOLATED)
+   n3151gat                     4.00           5.11 r        -1.11  (VIOLATED)
+   n3139gat                     4.00           4.80 r        -0.80  (VIOLATED)
+   n3140gat                     4.00           4.80 r        -0.80  (VIOLATED)
+   n3144gat                     4.00           4.59 r        -0.59  (VIOLATED)
+   n3143gat                     4.00           4.58 r        -0.58  (VIOLATED)
+   n3141gat                     4.00           4.56 r        -0.56  (VIOLATED)
+   n3142gat                     4.00           4.56 r        -0.56  (VIOLATED)
+   DFF_53/Q_reg/D               5.80           5.83 f        -0.03  (VIOLATED)
+   DFF_55/Q_reg/D               5.80           5.83 f        -0.03  (VIOLATED)
+   DFF_56/Q_reg/D               5.80           5.83 f        -0.03  (VIOLATED)
+   DFF_42/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_43/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_44/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_45/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_46/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_51/Q_reg/D               5.80           5.81 f        -0.01  (VIOLATED)
+   DFF_52/Q_reg/D               5.80           5.81 f        -0.01  (VIOLATED)
+   n3145gat                     4.00           4.00 r         0.00  (VIOLATED: increase significant digits)
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   s5378                        0.00       31121.15       -31121.15 (VIOLATED)
+
+
+1
+dft_drc -verbose
+In mode: all_dft...
+  Pre-DFT DRC enabled
+
+Information: Starting test design rule checking. (TEST-222)
+  Loading test protocol
+  ...basic checks...
+  ...basic sequential cell checks...
+  	...checking for scan equivalents...
+  ...checking vector rules...
+  ...checking pre-dft rules...
+
+-----------------------------------------------------------------
+  DRC Report
+
+  Total violations: 0
+
+-----------------------------------------------------------------
+
+
+Test Design rule checking did not find violations
+
+-----------------------------------------------------------------
+  Sequential Cell Report
+
+  0 out of 179 sequential cells have violations
+
+-----------------------------------------------------------------
+
+SEQUENTIAL CELLS WITHOUT VIOLATIONS
+      * 179 cells are valid scan cells
+         DFF_0/Q_reg
+         DFF_9/Q_reg
+         DFF_142/Q_reg
+         DFF_178/Q_reg
+         DFF_177/Q_reg
+         DFF_176/Q_reg
+         DFF_175/Q_reg
+         DFF_174/Q_reg
+         DFF_173/Q_reg
+         DFF_172/Q_reg
+         DFF_171/Q_reg
+         DFF_170/Q_reg
+         DFF_169/Q_reg
+         DFF_168/Q_reg
+         DFF_167/Q_reg
+         DFF_166/Q_reg
+         DFF_165/Q_reg
+         DFF_164/Q_reg
+         DFF_163/Q_reg
+         DFF_162/Q_reg
+         DFF_161/Q_reg
+         DFF_160/Q_reg
+         DFF_159/Q_reg
+         DFF_158/Q_reg
+         DFF_157/Q_reg
+         DFF_156/Q_reg
+         DFF_155/Q_reg
+         DFF_154/Q_reg
+         DFF_153/Q_reg
+         DFF_152/Q_reg
+         DFF_151/Q_reg
+         DFF_150/Q_reg
+         DFF_149/Q_reg
+         DFF_148/Q_reg
+         DFF_147/Q_reg
+         DFF_146/Q_reg
+         DFF_145/Q_reg
+         DFF_144/Q_reg
+         DFF_143/Q_reg
+         DFF_141/Q_reg
+         DFF_140/Q_reg
+         DFF_139/Q_reg
+         DFF_138/Q_reg
+         DFF_137/Q_reg
+         DFF_136/Q_reg
+         DFF_135/Q_reg
+         DFF_134/Q_reg
+         DFF_133/Q_reg
+         DFF_132/Q_reg
+         DFF_131/Q_reg
+         DFF_130/Q_reg
+         DFF_129/Q_reg
+         DFF_128/Q_reg
+         DFF_127/Q_reg
+         DFF_126/Q_reg
+         DFF_125/Q_reg
+         DFF_124/Q_reg
+         DFF_123/Q_reg
+         DFF_121/Q_reg
+         DFF_120/Q_reg
+         DFF_118/Q_reg
+         DFF_117/Q_reg
+         DFF_116/Q_reg
+         DFF_115/Q_reg
+         DFF_114/Q_reg
+         DFF_113/Q_reg
+         DFF_112/Q_reg
+         DFF_110/Q_reg
+         DFF_109/Q_reg
+         DFF_108/Q_reg
+         DFF_107/Q_reg
+         DFF_106/Q_reg
+         DFF_105/Q_reg
+         DFF_103/Q_reg
+         DFF_102/Q_reg
+         DFF_101/Q_reg
+         DFF_100/Q_reg
+         DFF_99/Q_reg
+         DFF_98/Q_reg
+         DFF_97/Q_reg
+         DFF_96/Q_reg
+         DFF_95/Q_reg
+         DFF_94/Q_reg
+         DFF_93/Q_reg
+         DFF_92/Q_reg
+         DFF_91/Q_reg
+         DFF_90/Q_reg
+         DFF_89/Q_reg
+         DFF_88/Q_reg
+         DFF_87/Q_reg
+         DFF_86/Q_reg
+         DFF_85/Q_reg
+         DFF_84/Q_reg
+         DFF_83/Q_reg
+         DFF_82/Q_reg
+         DFF_81/Q_reg
+         DFF_80/Q_reg
+         DFF_79/Q_reg
+         DFF_78/Q_reg
+         DFF_77/Q_reg
+         DFF_76/Q_reg
+         DFF_75/Q_reg
+         DFF_74/Q_reg
+         DFF_73/Q_reg
+         DFF_72/Q_reg
+         DFF_71/Q_reg
+         DFF_70/Q_reg
+         DFF_69/Q_reg
+         DFF_68/Q_reg
+         DFF_67/Q_reg
+         DFF_66/Q_reg
+         DFF_65/Q_reg
+         DFF_64/Q_reg
+         DFF_63/Q_reg
+         DFF_62/Q_reg
+         DFF_61/Q_reg
+         DFF_60/Q_reg
+         DFF_59/Q_reg
+         DFF_58/Q_reg
+         DFF_57/Q_reg
+         DFF_56/Q_reg
+         DFF_55/Q_reg
+         DFF_53/Q_reg
+         DFF_52/Q_reg
+         DFF_51/Q_reg
+         DFF_47/Q_reg
+         DFF_46/Q_reg
+         DFF_45/Q_reg
+         DFF_44/Q_reg
+         DFF_43/Q_reg
+         DFF_42/Q_reg
+         DFF_41/Q_reg
+         DFF_40/Q_reg
+         DFF_39/Q_reg
+         DFF_38/Q_reg
+         DFF_37/Q_reg
+         DFF_36/Q_reg
+         DFF_35/Q_reg
+         DFF_34/Q_reg
+         DFF_33/Q_reg
+         DFF_32/Q_reg
+         DFF_31/Q_reg
+         DFF_30/Q_reg
+         DFF_29/Q_reg
+         DFF_28/Q_reg
+         DFF_27/Q_reg
+         DFF_26/Q_reg
+         DFF_25/Q_reg
+         DFF_24/Q_reg
+         DFF_23/Q_reg
+         DFF_22/Q_reg
+         DFF_21/Q_reg
+         DFF_20/Q_reg
+         DFF_19/Q_reg
+         DFF_18/Q_reg
+         DFF_17/Q_reg
+         DFF_16/Q_reg
+         DFF_15/Q_reg
+         DFF_14/Q_reg
+         DFF_13/Q_reg
+         DFF_12/Q_reg
+         DFF_11/Q_reg
+         DFF_10/Q_reg
+         DFF_8/Q_reg
+         DFF_7/Q_reg
+         DFF_6/Q_reg
+         DFF_5/Q_reg
+         DFF_4/Q_reg
+         DFF_3/Q_reg
+         DFF_2/Q_reg
+         DFF_1/Q_reg
+         DFF_122/Q_reg
+         DFF_119/Q_reg
+         DFF_111/Q_reg
+         DFF_104/Q_reg
+         DFF_54/Q_reg
+         DFF_50/Q_reg
+         DFF_49/Q_reg
+         DFF_48/Q_reg
+
+Information: Test design rule checking completed. (TEST-123)
+1
+insert_dft
+  Information: Using test design rule information from previous dft_drc run.
+  Architecting Scan Chains
+  Routing Scan Chains
+  Routing Global Signals
+  Mapping New Logic
+Resetting current test mode
+  Beginning Mapping Optimizations
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+
+1
+set_drive 2 test_si
+1
+set_drive 2 test_se
+1
+# since you've already inserted scan-ff's, we don't want that to happen again,
+# when we run insert_dft
+set_scan_configuration -replace false
+Accepted scan configuration for modes: all_dft
+1
+insert_dft
+
+Information: Starting test design rule checking. (TEST-222)
+Test Design rule checking did not find violations
+Information: Test design rule checking completed. (TEST-123)
+  Architecting Scan Chains
+  Routing Scan Chains
+  Routing Global Signals
+  Mapping New Logic
+Resetting current test mode
+  Beginning Mapping Optimizations
+  -------------------------------
+
+1
+report_constraint -all_violators
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:36 2021
+****************************************
+
+
+   max_delay/setup ('CK' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   n3137gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3130gat                     4.00           5.23 f        -1.23  (VIOLATED)
+   n3124gat                     4.00           5.23 r        -1.23  (VIOLATED)
+   n3131gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3134gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3135gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3129gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3136gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3117gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3119gat                     4.00           5.22 r        -1.22  (VIOLATED)
+   n3132gat                     4.00           5.22 f        -1.22  (VIOLATED)
+   n3123gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3133gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3120gat                     4.00           5.21 r        -1.21  (VIOLATED)
+   n3121gat                     4.00           5.20 r        -1.20  (VIOLATED)
+   n3118gat                     4.00           5.19 r        -1.19  (VIOLATED)
+   n3125gat                     4.00           5.19 r        -1.19  (VIOLATED)
+   n3104gat                     4.00           5.16 f        -1.16  (VIOLATED)
+   n3122gat                     4.00           5.15 r        -1.15  (VIOLATED)
+   n3105gat                     4.00           5.15 r        -1.15  (VIOLATED)
+   n3151gat                     4.00           5.11 r        -1.11  (VIOLATED)
+   n3139gat                     4.00           4.80 r        -0.80  (VIOLATED)
+   n3140gat                     4.00           4.80 r        -0.80  (VIOLATED)
+   n3144gat                     4.00           4.61 r        -0.61  (VIOLATED)
+   n3143gat                     4.00           4.60 r        -0.60  (VIOLATED)
+   n3141gat                     4.00           4.57 r        -0.57  (VIOLATED)
+   n3142gat                     4.00           4.57 r        -0.57  (VIOLATED)
+   DFF_53/Q_reg/D               5.80           5.83 f        -0.03  (VIOLATED)
+   DFF_55/Q_reg/D               5.80           5.83 f        -0.03  (VIOLATED)
+   DFF_56/Q_reg/D               5.80           5.83 f        -0.03  (VIOLATED)
+   DFF_42/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_43/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_44/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_45/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   DFF_46/Q_reg/D               5.75           5.77 f        -0.02  (VIOLATED)
+   n3145gat                     4.00           4.02 r        -0.02  (VIOLATED)
+   DFF_51/Q_reg/D               5.80           5.81 f        -0.01  (VIOLATED)
+   DFF_52/Q_reg/D               5.80           5.81 f        -0.01  (VIOLATED)
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   s5378                        0.00       29665.88       -29665.88 (VIOLATED)
+
+
+1
+dft_drc -verbose -coverage_estimate
+In mode: Internal_scan...
+  Design has scan chains in this mode
+  Design is scan routed
+  Post-DFT DRC enabled
+
+Information: Starting test design rule checking. (TEST-222)
+  Loading test protocol
+  ...basic checks...
+  ...basic sequential cell checks...
+  ...checking vector rules...
+  ...checking clock rules...
+  ...checking scan chain rules...
+  ...checking scan compression rules...
+  ...checking X-state rules...
+  ...checking tristate rules...
+  ...extracting scan details...
+
+-----------------------------------------------------------------
+  DRC Report
+
+  Total violations: 0
+
+-----------------------------------------------------------------
+
+
+Test Design rule checking did not find violations
+
+-----------------------------------------------------------------
+  Sequential Cell Report
+
+  0 out of 179 sequential cells have violations
+
+-----------------------------------------------------------------
+
+SEQUENTIAL CELLS WITHOUT VIOLATIONS
+      * 179 cells are valid scan cells
+         DFF_1/Q_reg
+         DFF_2/Q_reg
+         DFF_3/Q_reg
+         DFF_4/Q_reg
+         DFF_5/Q_reg
+         DFF_6/Q_reg
+         DFF_7/Q_reg
+         DFF_8/Q_reg
+         DFF_9/Q_reg
+         DFF_10/Q_reg
+         DFF_11/Q_reg
+         DFF_12/Q_reg
+         DFF_13/Q_reg
+         DFF_14/Q_reg
+         DFF_15/Q_reg
+         DFF_16/Q_reg
+         DFF_17/Q_reg
+         DFF_18/Q_reg
+         DFF_19/Q_reg
+         DFF_20/Q_reg
+         DFF_21/Q_reg
+         DFF_22/Q_reg
+         DFF_23/Q_reg
+         DFF_24/Q_reg
+         DFF_25/Q_reg
+         DFF_26/Q_reg
+         DFF_27/Q_reg
+         DFF_28/Q_reg
+         DFF_29/Q_reg
+         DFF_30/Q_reg
+         DFF_31/Q_reg
+         DFF_32/Q_reg
+         DFF_33/Q_reg
+         DFF_34/Q_reg
+         DFF_35/Q_reg
+         DFF_36/Q_reg
+         DFF_37/Q_reg
+         DFF_38/Q_reg
+         DFF_39/Q_reg
+         DFF_40/Q_reg
+         DFF_41/Q_reg
+         DFF_42/Q_reg
+         DFF_43/Q_reg
+         DFF_44/Q_reg
+         DFF_45/Q_reg
+         DFF_46/Q_reg
+         DFF_47/Q_reg
+         DFF_48/Q_reg
+         DFF_49/Q_reg
+         DFF_50/Q_reg
+         DFF_51/Q_reg
+         DFF_52/Q_reg
+         DFF_53/Q_reg
+         DFF_54/Q_reg
+         DFF_55/Q_reg
+         DFF_56/Q_reg
+         DFF_57/Q_reg
+         DFF_58/Q_reg
+         DFF_59/Q_reg
+         DFF_60/Q_reg
+         DFF_61/Q_reg
+         DFF_62/Q_reg
+         DFF_63/Q_reg
+         DFF_64/Q_reg
+         DFF_65/Q_reg
+         DFF_66/Q_reg
+         DFF_67/Q_reg
+         DFF_68/Q_reg
+         DFF_69/Q_reg
+         DFF_70/Q_reg
+         DFF_71/Q_reg
+         DFF_72/Q_reg
+         DFF_73/Q_reg
+         DFF_74/Q_reg
+         DFF_75/Q_reg
+         DFF_76/Q_reg
+         DFF_77/Q_reg
+         DFF_78/Q_reg
+         DFF_79/Q_reg
+         DFF_80/Q_reg
+         DFF_81/Q_reg
+         DFF_82/Q_reg
+         DFF_83/Q_reg
+         DFF_84/Q_reg
+         DFF_85/Q_reg
+         DFF_86/Q_reg
+         DFF_87/Q_reg
+         DFF_88/Q_reg
+         DFF_89/Q_reg
+         DFF_90/Q_reg
+         DFF_91/Q_reg
+         DFF_92/Q_reg
+         DFF_93/Q_reg
+         DFF_94/Q_reg
+         DFF_95/Q_reg
+         DFF_96/Q_reg
+         DFF_97/Q_reg
+         DFF_98/Q_reg
+         DFF_99/Q_reg
+         DFF_100/Q_reg
+         DFF_101/Q_reg
+         DFF_102/Q_reg
+         DFF_103/Q_reg
+         DFF_104/Q_reg
+         DFF_105/Q_reg
+         DFF_106/Q_reg
+         DFF_107/Q_reg
+         DFF_108/Q_reg
+         DFF_109/Q_reg
+         DFF_110/Q_reg
+         DFF_111/Q_reg
+         DFF_112/Q_reg
+         DFF_113/Q_reg
+         DFF_114/Q_reg
+         DFF_115/Q_reg
+         DFF_116/Q_reg
+         DFF_117/Q_reg
+         DFF_118/Q_reg
+         DFF_119/Q_reg
+         DFF_120/Q_reg
+         DFF_121/Q_reg
+         DFF_122/Q_reg
+         DFF_123/Q_reg
+         DFF_124/Q_reg
+         DFF_125/Q_reg
+         DFF_126/Q_reg
+         DFF_127/Q_reg
+         DFF_128/Q_reg
+         DFF_129/Q_reg
+         DFF_130/Q_reg
+         DFF_131/Q_reg
+         DFF_132/Q_reg
+         DFF_133/Q_reg
+         DFF_134/Q_reg
+         DFF_135/Q_reg
+         DFF_136/Q_reg
+         DFF_137/Q_reg
+         DFF_138/Q_reg
+         DFF_139/Q_reg
+         DFF_140/Q_reg
+         DFF_141/Q_reg
+         DFF_142/Q_reg
+         DFF_143/Q_reg
+         DFF_144/Q_reg
+         DFF_145/Q_reg
+         DFF_146/Q_reg
+         DFF_147/Q_reg
+         DFF_148/Q_reg
+         DFF_149/Q_reg
+         DFF_150/Q_reg
+         DFF_151/Q_reg
+         DFF_152/Q_reg
+         DFF_153/Q_reg
+         DFF_154/Q_reg
+         DFF_155/Q_reg
+         DFF_156/Q_reg
+         DFF_157/Q_reg
+         DFF_158/Q_reg
+         DFF_159/Q_reg
+         DFF_160/Q_reg
+         DFF_161/Q_reg
+         DFF_162/Q_reg
+         DFF_163/Q_reg
+         DFF_164/Q_reg
+         DFF_165/Q_reg
+         DFF_166/Q_reg
+         DFF_167/Q_reg
+         DFF_168/Q_reg
+         DFF_169/Q_reg
+         DFF_170/Q_reg
+         DFF_171/Q_reg
+         DFF_172/Q_reg
+         DFF_173/Q_reg
+         DFF_174/Q_reg
+         DFF_175/Q_reg
+         DFF_176/Q_reg
+         DFF_177/Q_reg
+         DFF_178/Q_reg
+         DFF_0/Q_reg
+
+....Inferring feed-through connections....
+Information: Test design rule checking completed. (TEST-123)
+  Running test coverage estimation...
+ 6564 faults were added to fault list.
+ ATPG performed for stuck fault model using internal pattern source.
+ ----------------------------------------------------------
+ #patterns     #faults     #ATPG faults  test      process
+ stored     detect/active  red/au/abort  coverage  CPU time
+ ---------  -------------  ------------  --------  --------
+ Begin deterministic ATPG: #uncollapsed_faults=5316, abort_limit=10...
+ 0            3616   1700         0/0/0    74.08%      0.01
+ 0             749    951         0/0/0    85.50%      0.01
+ 0             230    721         0/0/0    89.01%      0.02
+ 0             235    486         0/0/0    92.59%      0.02
+ 0             136    350         0/0/0    94.66%      0.02
+ 0              97    253         0/0/0    96.14%      0.03
+ 0              90    163         0/0/0    97.51%      0.03
+ 0              69     94         0/0/0    98.57%      0.03
+ 0              56     38         0/0/0    99.42%      0.04
+ 0              38      0         0/0/0   100.00%      0.04
+ 
+            Pattern Summary Report
+ -----------------------------------------------
+ #internal patterns                           0
+ -----------------------------------------------
+ 
+
+     Uncollapsed Stuck Fault Summary Report
+ -----------------------------------------------
+ fault class                     code   #faults
+ ------------------------------  ----  ---------
+ Detected                         DT       6559
+ Possibly detected                PT          0
+ Undetectable                     UD          5
+ ATPG untestable                  AU          0
+ Not detected                     ND          0
+ -----------------------------------------------
+ total faults                              6564
+ test coverage                           100.00%
+ -----------------------------------------------
+  Information: The test coverage above may be inferior
+               than the real test coverage with customized
+               protocol and test simulation library.
+1
+report_scan_path -view existing -chain all
+ 
+****************************************
+Report : Scan path
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:38 2021
+****************************************
+
+========================================
+TEST MODE: Internal_scan
+VIEW     : Existing DFT
+========================================
+
+========================================
+AS SPECIFIED BY USER
+========================================
+
+
+========================================
+AS BUILT BY insert_dft
+========================================
+
+Scan_path    Len   ScanDataIn  ScanDataOut ScanEnable  MasterClock SlaveClock
+-----------  ----- ----------- ----------- ----------- ----------- -----------
+I 1          179   test_si     test_so     test_se     CK          -
+
+1
+report_cell
+ 
+****************************************
+Report : cell
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:38 2021
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+DFF_0                     dff_test_178                    89.440002 h, n
+DFF_1                     dff_test_0                      89.440002 h, n
+DFF_2                     dff_test_1                      89.440002 h, n
+DFF_3                     dff_test_2                      89.440002 h, n
+DFF_4                     dff_test_3                      89.440002 h, n
+DFF_5                     dff_test_4                      89.440002 h, n
+DFF_6                     dff_test_5                      89.440002 h, n
+DFF_7                     dff_test_6                      89.440002 h, n
+DFF_8                     dff_test_7                      89.440002 h, n
+DFF_9                     dff_test_8                      89.440002 h, n
+DFF_10                    dff_test_9                      89.440002 h, n
+DFF_11                    dff_test_10                     89.440002 h, n
+DFF_12                    dff_test_11                     89.440002 h, n
+DFF_13                    dff_test_12                     89.440002 h, n
+DFF_14                    dff_test_13                     89.440002 h, n
+DFF_15                    dff_test_14                     89.440002 h, n
+DFF_16                    dff_test_15                     89.440002 h, n
+DFF_17                    dff_test_16                     89.440002 h, n
+DFF_18                    dff_test_17                     89.440002 h, n
+DFF_19                    dff_test_18                     89.440002 h, n
+DFF_20                    dff_test_19                     89.440002 h, n
+DFF_21                    dff_test_20                     89.440002 h, n
+DFF_22                    dff_test_21                     89.440002 h, n
+DFF_23                    dff_test_22                     89.440002 h, n
+DFF_24                    dff_test_23                     89.440002 h, n
+DFF_25                    dff_test_24                     89.440002 h, n
+DFF_26                    dff_test_25                     89.440002 h, n
+DFF_27                    dff_test_26                     89.440002 h, n
+DFF_28                    dff_test_27                     89.440002 h, n
+DFF_29                    dff_test_28                     89.440002 h, n
+DFF_30                    dff_test_29                     89.440002 h, n
+DFF_31                    dff_test_30                     89.440002 h, n
+DFF_32                    dff_test_31                     89.440002 h, n
+DFF_33                    dff_test_32                     89.440002 h, n
+DFF_34                    dff_test_33                     89.440002 h, n
+DFF_35                    dff_test_34                     89.440002 h, n
+DFF_36                    dff_test_35                     89.440002 h, n
+DFF_37                    dff_test_36                     89.440002 h, n
+DFF_38                    dff_test_37                     89.440002 h, n
+DFF_39                    dff_test_38                     89.440002 h, n
+DFF_40                    dff_test_39                     89.440002 h, n
+DFF_41                    dff_test_40                     89.440002 h, n
+DFF_42                    dff_test_41                     89.440002 h, n
+DFF_43                    dff_test_42                     89.440002 h, n
+DFF_44                    dff_test_43                     89.440002 h, n
+DFF_45                    dff_test_44                     89.440002 h, n
+DFF_46                    dff_test_45                     89.440002 h, n
+DFF_47                    dff_test_46                     89.440002 h, n
+DFF_48                    dff_test_47                     89.440002 h, n
+DFF_49                    dff_test_48                     89.440002 h, n
+DFF_50                    dff_test_49                     89.440002 h, n
+DFF_51                    dff_test_50                     89.440002 h, n
+DFF_52                    dff_test_51                     89.440002 h, n
+DFF_53                    dff_test_52                     89.440002 h, n
+DFF_54                    dff_test_53                     89.440002 h, n
+DFF_55                    dff_test_54                     89.440002 h, n
+DFF_56                    dff_test_55                     89.440002 h, n
+DFF_57                    dff_test_56                     89.440002 h, n
+DFF_58                    dff_test_57                     89.440002 h, n
+DFF_59                    dff_test_58                     89.440002 h, n
+DFF_60                    dff_test_59                     89.440002 h, n
+DFF_61                    dff_test_60                     89.440002 h, n
+DFF_62                    dff_test_61                     89.440002 h, n
+DFF_63                    dff_test_62                     89.440002 h, n
+DFF_64                    dff_test_63                     89.440002 h, n
+DFF_65                    dff_test_64                     89.440002 h, n
+DFF_66                    dff_test_65                     89.440002 h, n
+DFF_67                    dff_test_66                     89.440002 h, n
+DFF_68                    dff_test_67                     89.440002 h, n
+DFF_69                    dff_test_68                     89.440002 h, n
+DFF_70                    dff_test_69                     89.440002 h, n
+DFF_71                    dff_test_70                     89.440002 h, n
+DFF_72                    dff_test_71                     89.440002 h, n
+DFF_73                    dff_test_72                     89.440002 h, n
+DFF_74                    dff_test_73                     89.440002 h, n
+DFF_75                    dff_test_74                     89.440002 h, n
+DFF_76                    dff_test_75                     89.440002 h, n
+DFF_77                    dff_test_76                     89.440002 h, n
+DFF_78                    dff_test_77                     89.440002 h, n
+DFF_79                    dff_test_78                     89.440002 h, n
+DFF_80                    dff_test_79                     89.440002 h, n
+DFF_81                    dff_test_80                     89.440002 h, n
+DFF_82                    dff_test_81                     89.440002 h, n
+DFF_83                    dff_test_82                     89.440002 h, n
+DFF_84                    dff_test_83                     89.440002 h, n
+DFF_85                    dff_test_84                     89.440002 h, n
+DFF_86                    dff_test_85                     89.440002 h, n
+DFF_87                    dff_test_86                     89.440002 h, n
+DFF_88                    dff_test_87                     89.440002 h, n
+DFF_89                    dff_test_88                     89.440002 h, n
+DFF_90                    dff_test_89                     89.440002 h, n
+DFF_91                    dff_test_90                     89.440002 h, n
+DFF_92                    dff_test_91                     89.440002 h, n
+DFF_93                    dff_test_92                     89.440002 h, n
+DFF_94                    dff_test_93                     89.440002 h, n
+DFF_95                    dff_test_94                     89.440002 h, n
+DFF_96                    dff_test_95                     89.440002 h, n
+DFF_97                    dff_test_96                     89.440002 h, n
+DFF_98                    dff_test_97                     89.440002 h, n
+DFF_99                    dff_test_98                     89.440002 h, n
+DFF_100                   dff_test_99                     89.440002 h, n
+DFF_101                   dff_test_100                    89.440002 h, n
+DFF_102                   dff_test_101                    89.440002 h, n
+DFF_103                   dff_test_102                    89.440002 h, n
+DFF_104                   dff_test_103                    89.440002 h, n
+DFF_105                   dff_test_104                    89.440002 h, n
+DFF_106                   dff_test_105                    89.440002 h, n
+DFF_107                   dff_test_106                    89.440002 h, n
+DFF_108                   dff_test_107                    89.440002 h, n
+DFF_109                   dff_test_108                    89.440002 h, n
+DFF_110                   dff_test_109                    89.440002 h, n
+DFF_111                   dff_test_110                    89.440002 h, n
+DFF_112                   dff_test_111                    89.440002 h, n
+DFF_113                   dff_test_112                    89.440002 h, n
+DFF_114                   dff_test_113                    89.440002 h, n
+DFF_115                   dff_test_114                    89.440002 h, n
+DFF_116                   dff_test_115                    89.440002 h, n
+DFF_117                   dff_test_116                    89.440002 h, n
+DFF_118                   dff_test_117                    89.440002 h, n
+DFF_119                   dff_test_118                    89.440002 h, n
+DFF_120                   dff_test_119                    89.440002 h, n
+DFF_121                   dff_test_120                    89.440002 h, n
+DFF_122                   dff_test_121                    89.440002 h, n
+DFF_123                   dff_test_122                    89.440002 h, n
+DFF_124                   dff_test_123                    89.440002 h, n
+DFF_125                   dff_test_124                    89.440002 h, n
+DFF_126                   dff_test_125                    89.440002 h, n
+DFF_127                   dff_test_126                    89.440002 h, n
+DFF_128                   dff_test_127                    89.440002 h, n
+DFF_129                   dff_test_128                    89.440002 h, n
+DFF_130                   dff_test_129                    89.440002 h, n
+DFF_131                   dff_test_130                    89.440002 h, n
+DFF_132                   dff_test_131                    89.440002 h, n
+DFF_133                   dff_test_132                    89.440002 h, n
+DFF_134                   dff_test_133                    89.440002 h, n
+DFF_135                   dff_test_134                    89.440002 h, n
+DFF_136                   dff_test_135                    89.440002 h, n
+DFF_137                   dff_test_136                    89.440002 h, n
+DFF_138                   dff_test_137                    89.440002 h, n
+DFF_139                   dff_test_138                    89.440002 h, n
+DFF_140                   dff_test_139                    89.440002 h, n
+DFF_141                   dff_test_140                    89.440002 h, n
+DFF_142                   dff_test_141                    89.440002 h, n
+DFF_143                   dff_test_142                    89.440002 h, n
+DFF_144                   dff_test_143                    89.440002 h, n
+DFF_145                   dff_test_144                    89.440002 h, n
+DFF_146                   dff_test_145                    89.440002 h, n
+DFF_147                   dff_test_146                    89.440002 h, n
+DFF_148                   dff_test_147                    89.440002 h, n
+DFF_149                   dff_test_148                    89.440002 h, n
+DFF_150                   dff_test_149                    89.440002 h, n
+DFF_151                   dff_test_150                    89.440002 h, n
+DFF_152                   dff_test_151                    89.440002 h, n
+DFF_153                   dff_test_152                    89.440002 h, n
+DFF_154                   dff_test_153                    89.440002 h, n
+DFF_155                   dff_test_154                    89.440002 h, n
+DFF_156                   dff_test_155                    89.440002 h, n
+DFF_157                   dff_test_156                    89.440002 h, n
+DFF_158                   dff_test_157                    89.440002 h, n
+DFF_159                   dff_test_158                    89.440002 h, n
+DFF_160                   dff_test_159                    89.440002 h, n
+DFF_161                   dff_test_160                    89.440002 h, n
+DFF_162                   dff_test_161                    89.440002 h, n
+DFF_163                   dff_test_162                    89.440002 h, n
+DFF_164                   dff_test_163                    89.440002 h, n
+DFF_165                   dff_test_164                    89.440002 h, n
+DFF_166                   dff_test_165                    89.440002 h, n
+DFF_167                   dff_test_166                    89.440002 h, n
+DFF_168                   dff_test_167                    89.440002 h, n
+DFF_169                   dff_test_168                    89.440002 h, n
+DFF_170                   dff_test_169                    89.440002 h, n
+DFF_171                   dff_test_170                    89.440002 h, n
+DFF_172                   dff_test_171                    89.440002 h, n
+DFF_173                   dff_test_172                    89.440002 h, n
+DFF_174                   dff_test_173                    89.440002 h, n
+DFF_175                   dff_test_174                    89.440002 h, n
+DFF_176                   dff_test_175                    89.440002 h, n
+DFF_177                   dff_test_176                    89.440002 h, n
+DFF_178                   dff_test_177                    89.440002 h, n
+U705                      NAN2D2          umcl18u250t2_wc 20.330000 
+U974                      AOI32D1         umcl18u250t2_wc 28.459999 
+U975                      EXOR2D1         umcl18u250t2_wc 28.459999 
+U976                      EXOR2D1         umcl18u250t2_wc 28.459999 
+U979                      EXOR2D1         umcl18u250t2_wc 28.459999 
+U980                      NAN2M1D1        umcl18u250t2_wc 16.260000 
+U981                      EXOR2D1         umcl18u250t2_wc 28.459999 
+U982                      OAI211D1        umcl18u250t2_wc 24.389999 
+U983                      EXOR2D1         umcl18u250t2_wc 28.459999 
+U984                      OAI211D1        umcl18u250t2_wc 24.389999 
+U995                      AND4D1          umcl18u250t2_wc 24.389999 
+U997                      AOI211D1        umcl18u250t2_wc 24.389999 
+U998                      OR2D1           umcl18u250t2_wc 16.260000 
+U1039                     NAN2M1D1        umcl18u250t2_wc 16.260000 
+U1043                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1054                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1072                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1084                     OR3D1           umcl18u250t2_wc 20.330000 
+U1094                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1095                     EXNOR2D1        umcl18u250t2_wc 28.459999 
+U1107                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1108                     AOI32D1         umcl18u250t2_wc 28.459999 
+U1109                     OAI32D1         umcl18u250t2_wc 28.459999 
+U1110                     AOI21D1         umcl18u250t2_wc 20.330000 
+U1112                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1113                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1114                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1115                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1116                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1117                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1118                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1119                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1120                     AOI21M20D1      umcl18u250t2_wc 24.389999 
+U1121                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1122                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1123                     AOI21M20D1      umcl18u250t2_wc 24.389999 
+U1124                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1125                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1126                     AOI22M10D1      umcl18u250t2_wc 32.520000 
+U1127                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1128                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1129                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1130                     OAI32D1         umcl18u250t2_wc 28.459999 
+U1131                     AOI211D1        umcl18u250t2_wc 24.389999 
+U1133                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1134                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1135                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1136                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1138                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1139                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1151                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1153                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1154                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1155                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1158                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1159                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1160                     AOI31D1         umcl18u250t2_wc 24.389999 
+U1161                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1162                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1163                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1164                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1165                     OR3D1           umcl18u250t2_wc 20.330000 
+U1166                     AOI211D1        umcl18u250t2_wc 24.389999 
+U1167                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1170                     OAI32D1         umcl18u250t2_wc 28.459999 
+U1171                     AOI32D1         umcl18u250t2_wc 28.459999 
+U1172                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1173                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1175                     OR3D1           umcl18u250t2_wc 20.330000 
+U1176                     AND2D1          umcl18u250t2_wc 16.260000 
+U1177                     BUFD4           umcl18u250t2_wc 28.459999 
+U1178                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1179                     OAI21M20D2      umcl18u250t2_wc 32.520000 
+U1180                     AO21M20D1       umcl18u250t2_wc 28.459999 
+U1181                     INVBD32         umcl18u250t2_wc 199.210007
+U1182                     AO21M20D1       umcl18u250t2_wc 28.459999 
+U1183                     INVBD32         umcl18u250t2_wc 199.210007
+U1184                     INVD4           umcl18u250t2_wc 20.330000 
+U1185                     AOI22M10DL      umcl18u250t2_wc 32.520000 
+U1186                     AOI21M10DL      umcl18u250t2_wc 28.459999 
+U1187                     INVBD32         umcl18u250t2_wc 199.210007
+U1188                     AND2D1          umcl18u250t2_wc 16.260000 
+U1189                     INVD2           umcl18u250t2_wc 12.200000 
+U1190                     INVD1           umcl18u250t2_wc 8.130000  
+U1191                     INVD1           umcl18u250t2_wc 8.130000  
+U1192                     OAI21M20D1      umcl18u250t2_wc 24.389999 
+U1193                     INVBD32         umcl18u250t2_wc 199.210007
+U1194                     OAI21M20D2      umcl18u250t2_wc 32.520000 
+U1195                     INVD1           umcl18u250t2_wc 8.130000  
+U1196                     OAI22D4         umcl18u250t2_wc 48.790001 
+U1197                     AND2D1          umcl18u250t2_wc 16.260000 
+U1198                     INVD1           umcl18u250t2_wc 8.130000  
+U1199                     INVD1           umcl18u250t2_wc 8.130000  
+U1200                     INVD1           umcl18u250t2_wc 8.130000  
+U1201                     INVD1           umcl18u250t2_wc 8.130000  
+U1202                     INVD1           umcl18u250t2_wc 8.130000  
+U1203                     INVD1           umcl18u250t2_wc 8.130000  
+U1204                     INVD1           umcl18u250t2_wc 8.130000  
+U1205                     AND2D1          umcl18u250t2_wc 16.260000 
+U1206                     BUFDL           umcl18u250t2_wc 12.200000 
+U1207                     INVBD2          umcl18u250t2_wc 16.260000 
+U1208                     INVD2           umcl18u250t2_wc 12.200000 
+U1209                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1210                     OAI32DL         umcl18u250t2_wc 28.459999 
+U1211                     INVD1           umcl18u250t2_wc 8.130000  
+U1212                     INVD4           umcl18u250t2_wc 20.330000 
+U1213                     NAN4DL          umcl18u250t2_wc 20.330000 
+U1214                     NAN4DL          umcl18u250t2_wc 20.330000 
+U1215                     INVDL           umcl18u250t2_wc 8.130000  
+U1216                     BUFD4           umcl18u250t2_wc 28.459999 
+U1217                     NOR2M1D2        umcl18u250t2_wc 24.389999 
+U1218                     INVD2           umcl18u250t2_wc 12.200000 
+U1219                     INVD2           umcl18u250t2_wc 12.200000 
+U1220                     INVBD2          umcl18u250t2_wc 16.260000 
+U1221                     INVD2           umcl18u250t2_wc 12.200000 
+U1222                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1223                     AOI21M10DL      umcl18u250t2_wc 28.459999 
+U1224                     INVBD2          umcl18u250t2_wc 16.260000 
+U1225                     AOI22M10D1      umcl18u250t2_wc 32.520000 
+U1226                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1227                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1228                     INVD1           umcl18u250t2_wc 8.130000  
+U1229                     NAN2M1D1        umcl18u250t2_wc 16.260000 
+U1230                     AOI22M10D1      umcl18u250t2_wc 32.520000 
+U1231                     AOI22M10D1      umcl18u250t2_wc 32.520000 
+U1232                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1233                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1234                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1235                     OAI21M20D2      umcl18u250t2_wc 32.520000 
+U1236                     INVBD2          umcl18u250t2_wc 16.260000 
+U1237                     AND2D2          umcl18u250t2_wc 20.330000 
+U1238                     OAI21M20D2      umcl18u250t2_wc 32.520000 
+U1239                     EXOR2D4         umcl18u250t2_wc 48.790001 
+U1240                     INVDL           umcl18u250t2_wc 8.130000  
+U1241                     OAI21M20D1      umcl18u250t2_wc 24.389999 
+U1242                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1243                     NOR2M1D2        umcl18u250t2_wc 24.389999 
+U1244                     OAI21M20D2      umcl18u250t2_wc 32.520000 
+U1245                     EXOR2D4         umcl18u250t2_wc 48.790001 
+U1246                     AND2D2          umcl18u250t2_wc 20.330000 
+U1247                     AOI22M20DL      umcl18u250t2_wc 36.590000 
+U1248                     INVDL           umcl18u250t2_wc 8.130000  
+U1249                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1250                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1251                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1252                     INVDL           umcl18u250t2_wc 8.130000  
+U1253                     INVD1           umcl18u250t2_wc 8.130000  
+U1254                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1255                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1256                     INVD1           umcl18u250t2_wc 8.130000  
+U1257                     OAI22M10D1      umcl18u250t2_wc 32.520000 
+U1258                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1259                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1260                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1261                     OAI21M20D2      umcl18u250t2_wc 32.520000 
+U1262                     OA21DL          umcl18u250t2_wc 28.459999 
+U1263                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1264                     AOI22M10DL      umcl18u250t2_wc 32.520000 
+U1265                     NAN2M1D2        umcl18u250t2_wc 24.389999 
+U1266                     AOI21M20D1      umcl18u250t2_wc 24.389999 
+U1267                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1268                     AOI22M10D1      umcl18u250t2_wc 32.520000 
+U1269                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1270                     INVD2           umcl18u250t2_wc 12.200000 
+U1271                     MUXB2D1         umcl18u250t2_wc 40.660000 
+U1272                     INVD2           umcl18u250t2_wc 12.200000 
+U1273                     INVBD4          umcl18u250t2_wc 24.389999 
+U1274                     AO21M10DL       umcl18u250t2_wc 36.590000 
+U1275                     AO22M10D2       umcl18u250t2_wc 44.720001 
+U1276                     INVDL           umcl18u250t2_wc 8.130000  
+U1277                     INVD1           umcl18u250t2_wc 8.130000  
+U1278                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1279                     BUFD4           umcl18u250t2_wc 28.459999 
+U1280                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1281                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1282                     BUFDL           umcl18u250t2_wc 12.200000 
+U1283                     INVDL           umcl18u250t2_wc 8.130000  
+U1284                     INVD2           umcl18u250t2_wc 12.200000 
+U1285                     AOI22M10D1      umcl18u250t2_wc 32.520000 
+U1286                     INVD2           umcl18u250t2_wc 12.200000 
+U1287                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1288                     BUFD4           umcl18u250t2_wc 28.459999 
+U1289                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1290                     INVDL           umcl18u250t2_wc 8.130000  
+U1291                     INVDL           umcl18u250t2_wc 8.130000  
+U1292                     INVDL           umcl18u250t2_wc 8.130000  
+U1293                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1294                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1295                     INVD1           umcl18u250t2_wc 8.130000  
+U1296                     AOI21M20D2      umcl18u250t2_wc 32.520000 
+U1297                     EXOR2D4         umcl18u250t2_wc 48.790001 
+U1298                     BUFD2           umcl18u250t2_wc 16.260000 
+U1299                     INVD1           umcl18u250t2_wc 8.130000  
+U1300                     AND2D2          umcl18u250t2_wc 20.330000 
+U1301                     AO22M10D2       umcl18u250t2_wc 44.720001 
+U1302                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1303                     AND3DL          umcl18u250t2_wc 20.330000 
+U1304                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1305                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1306                     AOI21DL         umcl18u250t2_wc 20.330000 
+U1307                     AOI21DL         umcl18u250t2_wc 20.330000 
+U1308                     NAN3D2          umcl18u250t2_wc 28.459999 
+U1309                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1310                     INVDL           umcl18u250t2_wc 8.130000  
+U1311                     NOR3M1D2        umcl18u250t2_wc 32.520000 
+U1312                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1313                     INVBD2          umcl18u250t2_wc 16.260000 
+U1314                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1315                     INVDL           umcl18u250t2_wc 8.130000  
+U1316                     INVDL           umcl18u250t2_wc 8.130000  
+U1317                     AOI21DL         umcl18u250t2_wc 20.330000 
+U1318                     OR2DL           umcl18u250t2_wc 16.260000 
+U1319                     INVD1           umcl18u250t2_wc 8.130000  
+U1320                     NAN2M1DL        umcl18u250t2_wc 16.260000 
+U1321                     EXNOR3DL        umcl18u250t2_wc 52.849998 
+U1322                     EXOR2DL         umcl18u250t2_wc 28.459999 
+U1323                     AOI22M20D1      umcl18u250t2_wc 36.590000 
+U1324                     NAN2M1DL        umcl18u250t2_wc 16.260000 
+U1325                     NAN3M1DL        umcl18u250t2_wc 20.330000 
+U1326                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1327                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1328                     OAI22M10DL      umcl18u250t2_wc 32.520000 
+U1329                     OAI22M10DL      umcl18u250t2_wc 32.520000 
+U1330                     OAI22M10DL      umcl18u250t2_wc 32.520000 
+U1331                     OAI22M10DL      umcl18u250t2_wc 32.520000 
+U1332                     AOI21M10DL      umcl18u250t2_wc 28.459999 
+U1333                     INVD1           umcl18u250t2_wc 8.130000  
+U1334                     AO21M20DL       umcl18u250t2_wc 28.459999 
+U1335                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1336                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1337                     NAN2M1D1        umcl18u250t2_wc 16.260000 
+U1338                     INVD1           umcl18u250t2_wc 8.130000  
+U1339                     AND2D1          umcl18u250t2_wc 16.260000 
+U1340                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1341                     INVD1           umcl18u250t2_wc 8.130000  
+U1342                     INVD1           umcl18u250t2_wc 8.130000  
+U1343                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1344                     INVD1           umcl18u250t2_wc 8.130000  
+U1345                     INVDL           umcl18u250t2_wc 8.130000  
+U1346                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1347                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1348                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1349                     INVD1           umcl18u250t2_wc 8.130000  
+U1350                     INVD1           umcl18u250t2_wc 8.130000  
+U1351                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1352                     INVD1           umcl18u250t2_wc 8.130000  
+U1353                     INVD1           umcl18u250t2_wc 8.130000  
+U1354                     INVD1           umcl18u250t2_wc 8.130000  
+U1355                     INVDL           umcl18u250t2_wc 8.130000  
+U1356                     INVD1           umcl18u250t2_wc 8.130000  
+U1357                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1358                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1359                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1360                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1361                     NAN2M1D1        umcl18u250t2_wc 16.260000 
+U1362                     INVDL           umcl18u250t2_wc 8.130000  
+U1363                     INVDL           umcl18u250t2_wc 8.130000  
+U1364                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1365                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1366                     INVD1           umcl18u250t2_wc 8.130000  
+U1367                     INVD1           umcl18u250t2_wc 8.130000  
+U1368                     OA32D1          umcl18u250t2_wc 36.590000 
+U1369                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1370                     INVD1           umcl18u250t2_wc 8.130000  
+U1371                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1372                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1373                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1374                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1375                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1376                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1377                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1378                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1379                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1380                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1381                     OA31D1          umcl18u250t2_wc 32.520000 
+U1382                     INVD1           umcl18u250t2_wc 8.130000  
+U1383                     INVD1           umcl18u250t2_wc 8.130000  
+U1384                     INVD1           umcl18u250t2_wc 8.130000  
+U1385                     INVD1           umcl18u250t2_wc 8.130000  
+U1386                     INVD1           umcl18u250t2_wc 8.130000  
+U1387                     INVD1           umcl18u250t2_wc 8.130000  
+U1388                     INVD1           umcl18u250t2_wc 8.130000  
+U1389                     INVD1           umcl18u250t2_wc 8.130000  
+U1390                     INVD1           umcl18u250t2_wc 8.130000  
+U1391                     INVD1           umcl18u250t2_wc 8.130000  
+U1392                     INVD1           umcl18u250t2_wc 8.130000  
+U1393                     INVD1           umcl18u250t2_wc 8.130000  
+U1394                     INVD1           umcl18u250t2_wc 8.130000  
+U1395                     INVD1           umcl18u250t2_wc 8.130000  
+U1396                     INVD1           umcl18u250t2_wc 8.130000  
+U1397                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1398                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1399                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1400                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1401                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1402                     INVD1           umcl18u250t2_wc 8.130000  
+U1403                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1404                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1405                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1406                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1407                     INVD1           umcl18u250t2_wc 8.130000  
+U1408                     INVDL           umcl18u250t2_wc 8.130000  
+U1409                     INVD1           umcl18u250t2_wc 8.130000  
+U1410                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1411                     INVDL           umcl18u250t2_wc 8.130000  
+U1412                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1413                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1414                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1415                     INVD1           umcl18u250t2_wc 8.130000  
+U1416                     NOR4M1D1        umcl18u250t2_wc 24.389999 
+U1417                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1418                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1419                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1420                     NOR3M1D1        umcl18u250t2_wc 20.330000 
+U1421                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1422                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1423                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1424                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1425                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1426                     INVD1           umcl18u250t2_wc 8.130000  
+U1427                     AO21M10DL       umcl18u250t2_wc 36.590000 
+U1428                     AND3DL          umcl18u250t2_wc 20.330000 
+U1429                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1430                     INVDL           umcl18u250t2_wc 8.130000  
+U1431                     NOR2D2          umcl18u250t2_wc 20.330000 
+U1432                     NOR4M1D1        umcl18u250t2_wc 24.389999 
+U1433                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1434                     AND3D1          umcl18u250t2_wc 20.330000 
+U1435                     NOR3M1D1        umcl18u250t2_wc 20.330000 
+U1436                     NOR4M1D1        umcl18u250t2_wc 24.389999 
+U1437                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1438                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1439                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1440                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1441                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1442                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1443                     INVD1           umcl18u250t2_wc 8.130000  
+U1444                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1445                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1446                     INVD1           umcl18u250t2_wc 8.130000  
+U1447                     NOR3DL          umcl18u250t2_wc 16.260000 
+U1448                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1449                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1450                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1451                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1452                     MUX2DL          umcl18u250t2_wc 24.389999 
+U1453                     INVD1           umcl18u250t2_wc 8.130000  
+U1454                     INVD1           umcl18u250t2_wc 8.130000  
+U1455                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1456                     INVD2           umcl18u250t2_wc 12.200000 
+U1457                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1458                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1459                     INVD1           umcl18u250t2_wc 8.130000  
+U1460                     INVD1           umcl18u250t2_wc 8.130000  
+U1461                     INVD1           umcl18u250t2_wc 8.130000  
+U1462                     INVD1           umcl18u250t2_wc 8.130000  
+U1463                     INVD1           umcl18u250t2_wc 8.130000  
+U1464                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1465                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1466                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1467                     INVD1           umcl18u250t2_wc 8.130000  
+U1468                     INVD1           umcl18u250t2_wc 8.130000  
+U1469                     EXNOR2D1        umcl18u250t2_wc 28.459999 
+U1470                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1471                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1472                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1473                     INVD1           umcl18u250t2_wc 8.130000  
+U1474                     AND3D1          umcl18u250t2_wc 20.330000 
+U1475                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1476                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1477                     OAI31D2         umcl18u250t2_wc 40.660000 
+U1478                     OAI31D2         umcl18u250t2_wc 40.660000 
+U1479                     EXNOR2D1        umcl18u250t2_wc 28.459999 
+U1480                     OAI21M20D1      umcl18u250t2_wc 24.389999 
+U1481                     INVD1           umcl18u250t2_wc 8.130000  
+U1482                     INVD1           umcl18u250t2_wc 8.130000  
+U1483                     INVD1           umcl18u250t2_wc 8.130000  
+U1484                     INVD1           umcl18u250t2_wc 8.130000  
+U1485                     INVD1           umcl18u250t2_wc 8.130000  
+U1486                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1487                     INVDL           umcl18u250t2_wc 8.130000  
+U1488                     INVD1           umcl18u250t2_wc 8.130000  
+U1489                     INVD1           umcl18u250t2_wc 8.130000  
+U1490                     INVD1           umcl18u250t2_wc 8.130000  
+U1491                     INVD1           umcl18u250t2_wc 8.130000  
+U1492                     INVDL           umcl18u250t2_wc 8.130000  
+U1493                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1494                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1495                     INVD1           umcl18u250t2_wc 8.130000  
+U1496                     AND2D1          umcl18u250t2_wc 16.260000 
+U1497                     INVDL           umcl18u250t2_wc 8.130000  
+U1498                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1499                     INVD1           umcl18u250t2_wc 8.130000  
+U1500                     INVD1           umcl18u250t2_wc 8.130000  
+U1501                     INVD1           umcl18u250t2_wc 8.130000  
+U1502                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1503                     EXNOR2DL        umcl18u250t2_wc 28.459999 
+U1504                     EXNOR2D1        umcl18u250t2_wc 28.459999 
+U1505                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1506                     INVD1           umcl18u250t2_wc 8.130000  
+U1507                     INVD1           umcl18u250t2_wc 8.130000  
+U1508                     INVD1           umcl18u250t2_wc 8.130000  
+U1509                     EXNOR3DL        umcl18u250t2_wc 52.849998 
+U1510                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1511                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1512                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1513                     INVD1           umcl18u250t2_wc 8.130000  
+U1514                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1515                     INVD1           umcl18u250t2_wc 8.130000  
+U1516                     AND2D1          umcl18u250t2_wc 16.260000 
+U1517                     INVDL           umcl18u250t2_wc 8.130000  
+U1518                     INVD1           umcl18u250t2_wc 8.130000  
+U1519                     INVD1           umcl18u250t2_wc 8.130000  
+U1520                     INVDL           umcl18u250t2_wc 8.130000  
+U1521                     INVDL           umcl18u250t2_wc 8.130000  
+U1522                     INVDL           umcl18u250t2_wc 8.130000  
+U1523                     INVD1           umcl18u250t2_wc 8.130000  
+U1524                     INVD1           umcl18u250t2_wc 8.130000  
+U1525                     INVDL           umcl18u250t2_wc 8.130000  
+U1526                     INVD1           umcl18u250t2_wc 8.130000  
+U1527                     INVD1           umcl18u250t2_wc 8.130000  
+U1528                     INVD1           umcl18u250t2_wc 8.130000  
+U1529                     INVD1           umcl18u250t2_wc 8.130000  
+U1530                     INVD1           umcl18u250t2_wc 8.130000  
+U1531                     EXNOR2D1        umcl18u250t2_wc 28.459999 
+U1532                     INVDL           umcl18u250t2_wc 8.130000  
+U1533                     INVD1           umcl18u250t2_wc 8.130000  
+U1534                     INVD1           umcl18u250t2_wc 8.130000  
+U1535                     INVD1           umcl18u250t2_wc 8.130000  
+U1536                     INVD1           umcl18u250t2_wc 8.130000  
+U1537                     INVD1           umcl18u250t2_wc 8.130000  
+U1538                     INVD1           umcl18u250t2_wc 8.130000  
+U1539                     INVD1           umcl18u250t2_wc 8.130000  
+U1540                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1541                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1542                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1543                     EXNOR3D1        umcl18u250t2_wc 52.849998 
+U1544                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1545                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1546                     NAN4M1D1        umcl18u250t2_wc 24.389999 
+U1547                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1548                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1549                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1550                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1551                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1552                     NOR4M1D1        umcl18u250t2_wc 24.389999 
+U1553                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1554                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1555                     INVD1           umcl18u250t2_wc 8.130000  
+U1556                     INVD1           umcl18u250t2_wc 8.130000  
+U1557                     INVD1           umcl18u250t2_wc 8.130000  
+U1558                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1559                     NAN3M1DL        umcl18u250t2_wc 20.330000 
+U1560                     INVD1           umcl18u250t2_wc 8.130000  
+U1561                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1562                     INVD1           umcl18u250t2_wc 8.130000  
+U1563                     INVD1           umcl18u250t2_wc 8.130000  
+U1564                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1565                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1566                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1567                     AND2D1          umcl18u250t2_wc 16.260000 
+U1568                     OA211D1         umcl18u250t2_wc 32.520000 
+U1569                     NOR4M1D1        umcl18u250t2_wc 24.389999 
+U1570                     AND2D1          umcl18u250t2_wc 16.260000 
+U1571                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1572                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1573                     NOR2M1D1        umcl18u250t2_wc 16.260000 
+U1574                     AND3D1          umcl18u250t2_wc 20.330000 
+U1575                     INVD1           umcl18u250t2_wc 8.130000  
+U1576                     INVD1           umcl18u250t2_wc 8.130000  
+U1577                     INVD1           umcl18u250t2_wc 8.130000  
+U1578                     INVD1           umcl18u250t2_wc 8.130000  
+U1579                     INVD1           umcl18u250t2_wc 8.130000  
+U1580                     AND3D1          umcl18u250t2_wc 20.330000 
+U1581                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1582                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1583                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1584                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1585                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1586                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1587                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1588                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1589                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1590                     INVD1           umcl18u250t2_wc 8.130000  
+U1591                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1592                     NOR4D1          umcl18u250t2_wc 20.330000 
+U1593                     NOR3M1D1        umcl18u250t2_wc 20.330000 
+U1594                     INVD1           umcl18u250t2_wc 8.130000  
+U1595                     INVD1           umcl18u250t2_wc 8.130000  
+U1596                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1597                     AND3D1          umcl18u250t2_wc 20.330000 
+U1598                     INVD1           umcl18u250t2_wc 8.130000  
+U1599                     INVD1           umcl18u250t2_wc 8.130000  
+U1600                     INVD1           umcl18u250t2_wc 8.130000  
+U1601                     INVD1           umcl18u250t2_wc 8.130000  
+U1602                     INVD1           umcl18u250t2_wc 8.130000  
+U1603                     INVD1           umcl18u250t2_wc 8.130000  
+U1604                     INVD1           umcl18u250t2_wc 8.130000  
+U1605                     INVD1           umcl18u250t2_wc 8.130000  
+U1606                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1607                     INVD1           umcl18u250t2_wc 8.130000  
+U1608                     INVD1           umcl18u250t2_wc 8.130000  
+U1609                     INVD1           umcl18u250t2_wc 8.130000  
+U1610                     INVD1           umcl18u250t2_wc 8.130000  
+U1611                     INVD1           umcl18u250t2_wc 8.130000  
+U1612                     INVD1           umcl18u250t2_wc 8.130000  
+U1613                     INVD1           umcl18u250t2_wc 8.130000  
+U1614                     INVD1           umcl18u250t2_wc 8.130000  
+U1615                     INVD1           umcl18u250t2_wc 8.130000  
+U1616                     INVD1           umcl18u250t2_wc 8.130000  
+U1617                     INVD1           umcl18u250t2_wc 8.130000  
+U1618                     INVD1           umcl18u250t2_wc 8.130000  
+U1619                     INVD1           umcl18u250t2_wc 8.130000  
+U1620                     INVD1           umcl18u250t2_wc 8.130000  
+U1621                     INVD1           umcl18u250t2_wc 8.130000  
+U1622                     INVD1           umcl18u250t2_wc 8.130000  
+U1623                     INVD1           umcl18u250t2_wc 8.130000  
+U1624                     INVD1           umcl18u250t2_wc 8.130000  
+U1625                     INVD1           umcl18u250t2_wc 8.130000  
+U1626                     INVD1           umcl18u250t2_wc 8.130000  
+U1627                     INVD1           umcl18u250t2_wc 8.130000  
+U1628                     INVD1           umcl18u250t2_wc 8.130000  
+U1629                     INVD1           umcl18u250t2_wc 8.130000  
+U1630                     INVD1           umcl18u250t2_wc 8.130000  
+U1631                     INVD1           umcl18u250t2_wc 8.130000  
+U1632                     INVD1           umcl18u250t2_wc 8.130000  
+U1633                     OAI21DL         umcl18u250t2_wc 20.330000 
+U1634                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1635                     OAI31DL         umcl18u250t2_wc 24.389999 
+U1636                     NOR3DL          umcl18u250t2_wc 16.260000 
+U1637                     TIEHI           umcl18u250t2_wc 8.130000  
+U1638                     INVDL           umcl18u250t2_wc 8.130000  
+U1639                     NOR3D1          umcl18u250t2_wc 16.260000 
+U1640                     NAN4DL          umcl18u250t2_wc 20.330000 
+U1641                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1642                     INVDL           umcl18u250t2_wc 8.130000  
+U1643                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1644                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1645                     INVD2           umcl18u250t2_wc 12.200000 
+U1646                     INVDL           umcl18u250t2_wc 8.130000  
+U1647                     NOR3D2          umcl18u250t2_wc 28.459999 
+U1648                     BUFDL           umcl18u250t2_wc 12.200000 
+U1649                     BUFD4           umcl18u250t2_wc 28.459999 
+U1650                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1651                     NAN3D4          umcl18u250t2_wc 40.660000 
+U1652                     NAN4DL          umcl18u250t2_wc 20.330000 
+U1653                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1654                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1655                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1656                     INVBD2          umcl18u250t2_wc 16.260000 
+U1657                     AOI21DL         umcl18u250t2_wc 20.330000 
+U1658                     INVDL           umcl18u250t2_wc 8.130000  
+U1659                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1660                     INVD4           umcl18u250t2_wc 20.330000 
+U1661                     AOI21DL         umcl18u250t2_wc 20.330000 
+U1662                     OAI31M10DL      umcl18u250t2_wc 28.459999 
+U1663                     INVBD2          umcl18u250t2_wc 16.260000 
+U1664                     BUFDL           umcl18u250t2_wc 12.200000 
+U1665                     INVD2           umcl18u250t2_wc 12.200000 
+U1666                     INVBD4          umcl18u250t2_wc 24.389999 
+U1667                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1668                     INVDL           umcl18u250t2_wc 8.130000  
+U1669                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1670                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1671                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1672                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1673                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1674                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1675                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1676                     OAI22DL         umcl18u250t2_wc 24.389999 
+U1677                     NAN4DL          umcl18u250t2_wc 20.330000 
+U1678                     NAN4DL          umcl18u250t2_wc 20.330000 
+U1679                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1680                     INVD1           umcl18u250t2_wc 8.130000  
+U1681                     INVDL           umcl18u250t2_wc 8.130000  
+U1682                     NAN2DL          umcl18u250t2_wc 12.200000 
+U1683                     NOR2DL          umcl18u250t2_wc 12.200000 
+U1684                     NAN3DL          umcl18u250t2_wc 16.260000 
+U1685                     OAI211DL        umcl18u250t2_wc 24.389999 
+U1686                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1687                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1688                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1689                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1690                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1691                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1692                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1693                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1694                     AOI22DL         umcl18u250t2_wc 24.389999 
+U1695                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1696                     INVDL           umcl18u250t2_wc 8.130000  
+U1697                     NAN3D4          umcl18u250t2_wc 40.660000 
+U1698                     NAN2D2          umcl18u250t2_wc 20.330000 
+U1699                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1700                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1701                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1702                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1703                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1704                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1705                     INVD2           umcl18u250t2_wc 12.200000 
+U1706                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1707                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1708                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1709                     INVD2           umcl18u250t2_wc 12.200000 
+U1710                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1711                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1712                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1713                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1714                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1715                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1716                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1717                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1718                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1719                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1720                     AOI211D1        umcl18u250t2_wc 24.389999 
+U1721                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1722                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1723                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1724                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1725                     NAN4D1          umcl18u250t2_wc 20.330000 
+U1726                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1727                     AOI21D1         umcl18u250t2_wc 20.330000 
+U1728                     AOI21D1         umcl18u250t2_wc 20.330000 
+U1729                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1730                     AOI211D1        umcl18u250t2_wc 24.389999 
+U1731                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1732                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1733                     MUX2D1          umcl18u250t2_wc 28.459999 
+U1734                     OAI211D1        umcl18u250t2_wc 24.389999 
+U1735                     OAI21M20D1      umcl18u250t2_wc 24.389999 
+U1736                     AOI32D1         umcl18u250t2_wc 28.459999 
+U1737                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1738                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1739                     MUXB2DL         umcl18u250t2_wc 24.389999 
+U1740                     AND3D1          umcl18u250t2_wc 20.330000 
+U1741                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1742                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1743                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1744                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1745                     AOI21D1         umcl18u250t2_wc 20.330000 
+U1746                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1747                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1748                     NOR3D2          umcl18u250t2_wc 28.459999 
+U1749                     OAI22D1         umcl18u250t2_wc 24.389999 
+U1750                     NOR3D2          umcl18u250t2_wc 28.459999 
+U1751                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1752                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1753                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1754                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1755                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1756                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1757                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1758                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1759                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1760                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1761                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1762                     EXOR3D1         umcl18u250t2_wc 52.849998 
+U1763                     AOI211D1        umcl18u250t2_wc 24.389999 
+U1764                     EXNOR2D1        umcl18u250t2_wc 28.459999 
+U1765                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1766                     OR2D1           umcl18u250t2_wc 16.260000 
+U1767                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1768                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1769                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1770                     NAN3D1          umcl18u250t2_wc 16.260000 
+U1771                     NOR2D1          umcl18u250t2_wc 12.200000 
+U1772                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1773                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1774                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1775                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1776                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1777                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1778                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1779                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1780                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1781                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1782                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1783                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1784                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1785                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1786                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1787                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1788                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1789                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1790                     NAN2D1          umcl18u250t2_wc 12.200000 
+U1791                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1792                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1793                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1794                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1795                     AOI22D1         umcl18u250t2_wc 24.389999 
+U1796                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1797                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1798                     MUXB2DL         umcl18u250t2_wc 24.389999 
+U1799                     AOI21D1         umcl18u250t2_wc 20.330000 
+U1800                     EXOR2D1         umcl18u250t2_wc 28.459999 
+U1801                     MUXB2DL         umcl18u250t2_wc 24.389999 
+U1802                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1803                     MUXB2DL         umcl18u250t2_wc 24.389999 
+U1804                     OAI21D1         umcl18u250t2_wc 20.330000 
+U1805                     MUXB2DL         umcl18u250t2_wc 24.389999 
+U1806                     MUXB2DL         umcl18u250t2_wc 24.389999 
+--------------------------------------------------------------------------------
+Total 879 cells                                           29665.880335
+1
+## set_dft_signal -view existing_dft -type ScanClock -timing [list 45 55] -port CK
+write_test_protocol -output ${mydesign}.spf
+Writing test protocol file '/localdisk/users/gnta/vlsi_testing_lab2/exercise3/s5378.spf' for mode 'Internal_scan'...
+1
+check_design
+ 
+****************************************
+check_design summary:
+Version:     N-2017.09-SP3
+Date:        Fri Oct  1 04:46:38 2021
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                      6
+    Shorted outputs (LINT-31)                                       3
+    Constant outputs (LINT-52)                                      3
+--------------------------------------------------------------------------------
+
+Warning: In design 's5378', output port 'n3112gat' is connected directly to output port 'n3115gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3112gat' is connected directly to output port 'n3152gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3141gat' is connected directly to output port 'n3142gat'. (LINT-31)
+Warning: In design 's5378', output port 'n3112gat' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 's5378', output port 'n3115gat' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 's5378', output port 'n3152gat' is connected directly to 'logic 1'. (LINT-52)
+1
+change_names -rules verilog -hierarchy -verbose
+
+Design          Type    Object                  New Name
+--------------------------------------------------------------------------------
+Warning: In the design s5378, net 'n3152gat' is connecting multiple ports. (UCN-1)
+Warning: In the design s5378, net 'n2980gat' is connecting multiple ports. (UCN-1)
+s5378           net     n1588gat                test_so
+s5378           net     n2684gat                n3150gat
+s5378           net     n2830gat                n3147gat
+s5378           net     n2744gat                n3144gat
+s5378           net     n2800gat                n3143gat
+s5378           net     n2980gat                n3142gat
+s5378           net     n1721gat                n3138gat
+s5378           net     n2941gat                n3137gat
+s5378           net     n2936gat                n3131gat
+s5378           net     n2955gat                n3130gat
+s5378           net     n2762gat                n3124gat
+s5378           net     n2757gat                n3122gat
+s5378           net     n2693gat                n3114gat
+s5378           net     n2702gat                n3113gat
+s5378           net     n2709gat                n3111gat
+s5378           net     n2708gat                n3110gat
+s5378           net     n2799gat                n3109gat
+s5378           net     n2798gat                n3108gat
+s5378           net     n1745gat                n3107gat
+s5378           net     n2812gat                n3105gat
+s5378           net     n2822gat                n3104gat
+1
+write -format ddc -hierarchy -output  ${mydesign}_scan_netlist.ddc
+Writing ddc file 's5378_scan_netlist.ddc'.
+1
+write -format verilog -hierarchy -output  ${mydesign}_scan_netlist.v
+Writing verilog file '/localdisk/users/gnta/vlsi_testing_lab2/exercise3/s5378_scan_netlist.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+write_sdf -version 2.1  ${mydesign}_scan_netlist.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/localdisk/users/gnta/vlsi_testing_lab2/exercise3/s5378_scan_netlist.sdf'. (WT-3)
+1
+preview_dft -show cells
+
+Information: Starting test design rule checking. (TEST-222)
+Test Design rule checking did not find violations
+Information: Test design rule checking completed. (TEST-123)
+  Architecting Scan Chains
+
+****************************************
+Preview_dft report
+For    : 'Insert_dft' command
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:40 2021
+****************************************
+
+Number of chains: 1
+Scan methodology: full_scan
+Scan style: multiplexed_flip_flop
+Clock domain: no_mix
+Scan enable: test_se (no hookup pin)
+
+  (l) shows cell scan-out drives a lockup latch
+  (s) shows cell is a scan segment
+  (w) shows cell scan-out drives a wire
+
+
+Scan chain '1' (test_si --> test_so) contains 179 cells:
+
+  DFF_0/Q_reg                   
+  DFF_1/Q_reg                   
+  DFF_2/Q_reg                   
+  DFF_3/Q_reg                   
+  DFF_4/Q_reg                   
+  DFF_5/Q_reg                   
+  DFF_6/Q_reg                   
+  DFF_7/Q_reg                   
+  DFF_8/Q_reg                   
+  DFF_9/Q_reg                   
+  DFF_10/Q_reg                  
+  DFF_11/Q_reg                  
+  DFF_12/Q_reg                  
+  DFF_13/Q_reg                  
+  DFF_14/Q_reg                  
+  DFF_15/Q_reg                  
+  DFF_16/Q_reg                  
+  DFF_17/Q_reg                  
+  DFF_18/Q_reg                  
+  DFF_19/Q_reg                  
+  DFF_20/Q_reg                  
+  DFF_21/Q_reg                  
+  DFF_22/Q_reg                  
+  DFF_23/Q_reg                  
+  DFF_24/Q_reg                  
+  DFF_25/Q_reg                  
+  DFF_26/Q_reg                  
+  DFF_27/Q_reg                  
+  DFF_28/Q_reg                  
+  DFF_29/Q_reg                  
+  DFF_30/Q_reg                  
+  DFF_31/Q_reg                  
+  DFF_32/Q_reg                  
+  DFF_33/Q_reg                  
+  DFF_34/Q_reg                  
+  DFF_35/Q_reg                  
+  DFF_36/Q_reg                  
+  DFF_37/Q_reg                  
+  DFF_38/Q_reg                  
+  DFF_39/Q_reg                  
+  DFF_40/Q_reg                  
+  DFF_41/Q_reg                  
+  DFF_42/Q_reg                  
+  DFF_43/Q_reg                  
+  DFF_44/Q_reg                  
+  DFF_45/Q_reg                  
+  DFF_46/Q_reg                  
+  DFF_47/Q_reg                  
+  DFF_48/Q_reg                  
+  DFF_49/Q_reg                  
+  DFF_50/Q_reg                  
+  DFF_51/Q_reg                  
+  DFF_52/Q_reg                  
+  DFF_53/Q_reg                  
+  DFF_54/Q_reg                  
+  DFF_55/Q_reg                  
+  DFF_56/Q_reg                  
+  DFF_57/Q_reg                  
+  DFF_58/Q_reg                  
+  DFF_59/Q_reg                  
+  DFF_60/Q_reg                  
+  DFF_61/Q_reg                  
+  DFF_62/Q_reg                  
+  DFF_63/Q_reg                  
+  DFF_64/Q_reg                  
+  DFF_65/Q_reg                  
+  DFF_66/Q_reg                  
+  DFF_67/Q_reg                  
+  DFF_68/Q_reg                  
+  DFF_69/Q_reg                  
+  DFF_70/Q_reg                  
+  DFF_71/Q_reg                  
+  DFF_72/Q_reg                  
+  DFF_73/Q_reg                  
+  DFF_74/Q_reg                  
+  DFF_75/Q_reg                  
+  DFF_76/Q_reg                  
+  DFF_77/Q_reg                  
+  DFF_78/Q_reg                  
+  DFF_79/Q_reg                  
+  DFF_80/Q_reg                  
+  DFF_81/Q_reg                  
+  DFF_82/Q_reg                  
+  DFF_83/Q_reg                  
+  DFF_84/Q_reg                  
+  DFF_85/Q_reg                  
+  DFF_86/Q_reg                  
+  DFF_87/Q_reg                  
+  DFF_88/Q_reg                  
+  DFF_89/Q_reg                  
+  DFF_90/Q_reg                  
+  DFF_91/Q_reg                  
+  DFF_92/Q_reg                  
+  DFF_93/Q_reg                  
+  DFF_94/Q_reg                  
+  DFF_95/Q_reg                  
+  DFF_96/Q_reg                  
+  DFF_97/Q_reg                  
+  DFF_98/Q_reg                  
+  DFF_99/Q_reg                  
+  DFF_100/Q_reg                 
+  DFF_101/Q_reg                 
+  DFF_102/Q_reg                 
+  DFF_103/Q_reg                 
+  DFF_104/Q_reg                 
+  DFF_105/Q_reg                 
+  DFF_106/Q_reg                 
+  DFF_107/Q_reg                 
+  DFF_108/Q_reg                 
+  DFF_109/Q_reg                 
+  DFF_110/Q_reg                 
+  DFF_111/Q_reg                 
+  DFF_112/Q_reg                 
+  DFF_113/Q_reg                 
+  DFF_114/Q_reg                 
+  DFF_115/Q_reg                 
+  DFF_116/Q_reg                 
+  DFF_117/Q_reg                 
+  DFF_118/Q_reg                 
+  DFF_119/Q_reg                 
+  DFF_120/Q_reg                 
+  DFF_121/Q_reg                 
+  DFF_122/Q_reg                 
+  DFF_123/Q_reg                 
+  DFF_124/Q_reg                 
+  DFF_125/Q_reg                 
+  DFF_126/Q_reg                 
+  DFF_127/Q_reg                 
+  DFF_128/Q_reg                 
+  DFF_129/Q_reg                 
+  DFF_130/Q_reg                 
+  DFF_131/Q_reg                 
+  DFF_132/Q_reg                 
+  DFF_133/Q_reg                 
+  DFF_134/Q_reg                 
+  DFF_135/Q_reg                 
+  DFF_136/Q_reg                 
+  DFF_137/Q_reg                 
+  DFF_138/Q_reg                 
+  DFF_139/Q_reg                 
+  DFF_140/Q_reg                 
+  DFF_141/Q_reg                 
+  DFF_142/Q_reg                 
+  DFF_143/Q_reg                 
+  DFF_144/Q_reg                 
+  DFF_145/Q_reg                 
+  DFF_146/Q_reg                 
+  DFF_147/Q_reg                 
+  DFF_148/Q_reg                 
+  DFF_149/Q_reg                 
+  DFF_150/Q_reg                 
+  DFF_151/Q_reg                 
+  DFF_152/Q_reg                 
+  DFF_153/Q_reg                 
+  DFF_154/Q_reg                 
+  DFF_155/Q_reg                 
+  DFF_156/Q_reg                 
+  DFF_157/Q_reg                 
+  DFF_158/Q_reg                 
+  DFF_159/Q_reg                 
+  DFF_160/Q_reg                 
+  DFF_161/Q_reg                 
+  DFF_162/Q_reg                 
+  DFF_163/Q_reg                 
+  DFF_164/Q_reg                 
+  DFF_165/Q_reg                 
+  DFF_166/Q_reg                 
+  DFF_167/Q_reg                 
+  DFF_168/Q_reg                 
+  DFF_169/Q_reg                 
+  DFF_170/Q_reg                 
+  DFF_171/Q_reg                 
+  DFF_172/Q_reg                 
+  DFF_173/Q_reg                 
+  DFF_174/Q_reg                 
+  DFF_175/Q_reg                 
+  DFF_176/Q_reg                 
+  DFF_177/Q_reg                 
+  DFF_178/Q_reg                 
+
+
+
+************ Test Point Plan Report ************
+Total number of test points  : 0
+Number of Autofix test points: 0
+Number of Wrapper test points: 0
+Number of test modes         : 0
+Number of test point enables : 0
+Number of data sources       : 0
+Number of data sinks         : 0
+**************************************************
+
+1
+report_timing -delay max
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:40 2021
+****************************************
+
+Operating Conditions: nom_pvt   Library: umcl18u250t2_wc
+Wire Load Model Mode: top
+
+  Startpoint: n3095gat (input port clocked by CK)
+  Endpoint: n3137gat (output port clocked by CK)
+  Path Group: CK
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock CK (rise edge)                     0.00       0.00
+  clock network delay (ideal)              2.00       2.00
+  input external delay                     2.00       4.00 f
+  n3095gat (in)                            0.10       4.10 f
+  U1743/Z (NAN2D1)                         0.15       4.25 r
+  U1278/Z (NAN2D1)                         0.14       4.39 f
+  U1640/Z (NAN4DL)                         0.15       4.53 r
+  U1662/Z (OAI31M10DL)                     0.13       4.67 f
+  U1745/Z (AOI21D1)                        0.10       4.77 r
+  U1674/Z (OAI211D1)                       0.13       4.90 f
+  U1275/Z (AO22M10D2)                      0.33       5.23 f
+  n3137gat (out)                           0.00       5.23 f
+  data arrival time                                   5.23
+
+  clock CK (rise edge)                     4.00       4.00
+  clock network delay (ideal)              2.00       6.00
+  output external delay                   -2.00       4.00
+  data required time                                  4.00
+  -----------------------------------------------------------
+  data required time                                  4.00
+  data arrival time                                  -5.23
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -1.23
+
+
+1
+report_area
+ 
+****************************************
+Report : area
+Design : s5378
+Version: N-2017.09-SP3
+Date   : Fri Oct  1 04:46:40 2021
+****************************************
+
+Library(s) Used:
+
+    umcl18u250t2_wc (File: /localdisk/libraries/UMCL18U250D2_2.4/design_compiler/umcl18u250t2_wc.db)
+
+Number of ports:                          983
+Number of nets:                          1812
+Number of cells:                         1058
+Number of combinational cells:            700
+Number of sequential cells:               179
+Number of macros/black boxes:               0
+Number of buf/inv:                        222
+Number of references:                     274
+
+Combinational area:              13656.119898
+Buf/Inv area:                     2878.250040
+Noncombinational area:           16009.760437
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 29665.880335
+Total area:                 undefined
+1
+exit
+
+Thank you...

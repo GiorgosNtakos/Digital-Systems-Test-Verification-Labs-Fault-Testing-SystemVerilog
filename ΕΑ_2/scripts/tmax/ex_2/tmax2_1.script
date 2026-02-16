@@ -1,0 +1,13 @@
+read netlist s1423_synth.v
+read netlist $UMC_LIB/verilog_simulation_models/*.v
+run build_model s1423
+run drc
+
+set_faults -model stuck
+create_faults -all
+
+set atpg -merge basic
+run atpg
+
+report summaries
+exit -force

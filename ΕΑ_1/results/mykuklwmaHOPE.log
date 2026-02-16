@@ -1,0 +1,272 @@
+test    1: 11001 1    2 faults detected
+	   F /0
+	   gate1 /0
+test    2: 11111 1    0 faults detected
+test    3: 00001 0    2 faults detected
+	   F /1
+	   gate3 /1
+test    4: 01101 0    2 faults detected
+	   D /1
+	   A /1
+test    5: 10110 0    1 faults detected
+	   E /1
+test    6: 01001 0    0 faults detected
+test    7: 01100 0    0 faults detected
+test    8: 10111 1    1 faults detected
+	   gate2 /0
+test    9: 10000 0    0 faults detected
+test   10: 10011 0    2 faults detected
+	   C /1
+	   B /1
+test   11: 00000 0    0 faults detected
+test   12: 11110 0    0 faults detected
+test   13: 10000 0    0 faults detected
+test   14: 01010 0    0 faults detected
+test   15: 00100 0    0 faults detected
+test   16: 10110 0    0 faults detected
+test   17: 00110 0    0 faults detected
+test   18: 00001 0    0 faults detected
+test   19: 00100 0    0 faults detected
+test   20: 00010 0    0 faults detected
+test   21: 01000 0    0 faults detected
+test   22: 00101 0    0 faults detected
+test   23: 10110 0    0 faults detected
+test   24: 00001 0    0 faults detected
+test   25: 00001 0    0 faults detected
+test   26: 00111 1    0 faults detected
+test   27: 01100 0    0 faults detected
+test   28: 11011 1    0 faults detected
+test   29: 11001 1    0 faults detected
+test   30: 11010 0    0 faults detected
+test   31: 00110 0    0 faults detected
+test   32: 01100 0    0 faults detected
+test   33: 01010 0    0 faults detected
+test   34: 10111 1    0 faults detected
+test   35: 00111 1    0 faults detected
+test   36: 00011 0    0 faults detected
+test   37: 11110 0    0 faults detected
+test   38: 01000 0    0 faults detected
+test   39: 01101 0    0 faults detected
+test   40: 00001 0    0 faults detected
+test   41: 00111 1    0 faults detected
+test   42: 01101 0    0 faults detected
+test   43: 11111 1    0 faults detected
+test   44: 10111 1    0 faults detected
+test   45: 00000 0    0 faults detected
+test   46: 11000 0    0 faults detected
+test   47: 11010 0    0 faults detected
+test   48: 00110 0    0 faults detected
+test   49: 11001 1    0 faults detected
+test   50: 11110 0    0 faults detected
+test   51: 10101 0    0 faults detected
+test   52: 01101 0    0 faults detected
+test   53: 00100 0    0 faults detected
+test   54: 01000 0    0 faults detected
+test   55: 01100 0    0 faults detected
+test   56: 00101 0    0 faults detected
+test   57: 11111 1    0 faults detected
+test   58: 00110 0    0 faults detected
+test   59: 00001 0    0 faults detected
+test   60: 01001 0    0 faults detected
+test   61: 00011 0    0 faults detected
+test   62: 00111 1    0 faults detected
+test   63: 00011 0    0 faults detected
+test   64: 11000 0    0 faults detected
+test   65: 10011 0    0 faults detected
+test   66: 10101 0    0 faults detected
+test   67: 11011 1    0 faults detected
+test   68: 00010 0    0 faults detected
+test   69: 11101 1    0 faults detected
+test   70: 10001 0    0 faults detected
+test   71: 10011 0    0 faults detected
+test   72: 00101 0    0 faults detected
+test   73: 00010 0    0 faults detected
+test   74: 00011 0    0 faults detected
+test   75: 10001 0    0 faults detected
+test   76: 00010 0    0 faults detected
+test   77: 11011 1    0 faults detected
+test   78: 00111 1    0 faults detected
+test   79: 00101 0    0 faults detected
+test   80: 11110 0    0 faults detected
+test   81: 11010 0    0 faults detected
+test   82: 01010 0    0 faults detected
+test   83: 10100 0    0 faults detected
+test   84: 00001 0    0 faults detected
+test   85: 00110 0    0 faults detected
+test   86: 11010 0    0 faults detected
+test   87: 00100 0    0 faults detected
+test   88: 11010 0    0 faults detected
+test   89: 00011 0    0 faults detected
+test   90: 00101 0    0 faults detected
+test   91: 01111 1    0 faults detected
+test   92: 00001 0    0 faults detected
+test   93: 10001 0    0 faults detected
+test   94: 01101 0    0 faults detected
+test   95: 11001 1    0 faults detected
+test   96: 11010 0    0 faults detected
+test   97: 11010 0    0 faults detected
+test   98: 11110 0    0 faults detected
+test   99: 00101 0    0 faults detected
+test  100: 11000 0    0 faults detected
+test  101: 00000 0    0 faults detected
+test  102: 10110 0    0 faults detected
+test  103: 11101 1    0 faults detected
+test  104: 00010 0    0 faults detected
+test  105: 10100 0    0 faults detected
+test  106: 00010 0    0 faults detected
+test  107: 10001 0    0 faults detected
+test  108: 00000 0    0 faults detected
+test  109: 00100 0    0 faults detected
+test  110: 10100 0    0 faults detected
+test  111: 00001 0    0 faults detected
+test  112: 00001 0    0 faults detected
+test  113: 11110 0    0 faults detected
+test  114: 10101 0    0 faults detected
+test  115: 00000 0    0 faults detected
+test  116: 00111 1    0 faults detected
+test  117: 10000 0    0 faults detected
+test  118: 10100 0    0 faults detected
+test  119: 00010 0    0 faults detected
+test  120: 10011 0    0 faults detected
+test  121: 01011 0    0 faults detected
+test  122: 01100 0    0 faults detected
+test  123: 01010 0    0 faults detected
+test  124: 11010 0    0 faults detected
+test  125: 00111 1    0 faults detected
+test  126: 10111 1    0 faults detected
+test  127: 01101 0    0 faults detected
+test  128: 00010 0    0 faults detected
+test  129: 00110 0    0 faults detected
+test  130: 01010 0    0 faults detected
+test  131: 11010 0    0 faults detected
+test  132: 10110 0    0 faults detected
+test  133: 11101 1    0 faults detected
+test  134: 01000 0    0 faults detected
+test  135: 01101 0    0 faults detected
+test  136: 10111 1    0 faults detected
+test  137: 11010 0    0 faults detected
+test  138: 11100 0    0 faults detected
+test  139: 10111 1    0 faults detected
+test  140: 11110 0    0 faults detected
+test  141: 00110 0    0 faults detected
+test  142: 10110 0    0 faults detected
+test  143: 00000 0    0 faults detected
+test  144: 00111 1    0 faults detected
+test  145: 11000 0    0 faults detected
+test  146: 00000 0    0 faults detected
+test  147: 00011 0    0 faults detected
+test  148: 00100 0    0 faults detected
+test  149: 01100 0    0 faults detected
+test  150: 00000 0    0 faults detected
+test  151: 01111 1    0 faults detected
+test  152: 00000 0    0 faults detected
+test  153: 01100 0    0 faults detected
+test  154: 00010 0    0 faults detected
+test  155: 11010 0    0 faults detected
+test  156: 11000 0    0 faults detected
+test  157: 10100 0    0 faults detected
+test  158: 01000 0    0 faults detected
+test  159: 11010 0    0 faults detected
+test  160: 01001 0    0 faults detected
+test  161: 10110 0    0 faults detected
+test  162: 01101 0    0 faults detected
+test  163: 11111 1    0 faults detected
+test  164: 00100 0    0 faults detected
+test  165: 10011 0    0 faults detected
+test  166: 10101 0    0 faults detected
+test  167: 10000 0    0 faults detected
+test  168: 00100 0    0 faults detected
+test  169: 00111 1    0 faults detected
+test  170: 11111 1    0 faults detected
+test  171: 11001 1    0 faults detected
+test  172: 10010 0    0 faults detected
+test  173: 10110 0    0 faults detected
+test  174: 00101 0    0 faults detected
+test  175: 10100 0    0 faults detected
+test  176: 00001 0    0 faults detected
+test  177: 00101 0    0 faults detected
+test  178: 01111 1    0 faults detected
+test  179: 10101 0    0 faults detected
+test  180: 01011 0    0 faults detected
+test  181: 11111 1    0 faults detected
+test  182: 11001 1    0 faults detected
+test  183: 01011 0    0 faults detected
+test  184: 10100 0    0 faults detected
+test  185: 11011 1    0 faults detected
+test  186: 01100 0    0 faults detected
+test  187: 10010 0    0 faults detected
+test  188: 00000 0    0 faults detected
+test  189: 00010 0    0 faults detected
+test  190: 00101 0    0 faults detected
+test  191: 01001 0    0 faults detected
+test  192: 10101 0    0 faults detected
+test  193: 01010 0    0 faults detected
+test  194: 10001 0    0 faults detected
+test  195: 01011 0    0 faults detected
+test  196: 11000 0    0 faults detected
+test  197: 11100 0    0 faults detected
+test  198: 00111 1    0 faults detected
+test  199: 11100 0    0 faults detected
+test  200: 11000 0    0 faults detected
+test  201: 11011 1    0 faults detected
+test  202: 11011 1    0 faults detected
+test  203: 00110 0    0 faults detected
+test  204: 00010 0    0 faults detected
+test  205: 11110 0    0 faults detected
+test  206: 10001 0    0 faults detected
+test  207: 10011 0    0 faults detected
+test  208: 00100 0    0 faults detected
+test  209: 00001 0    0 faults detected
+test  210: 01110 0    0 faults detected
+test  211: 11111 1    0 faults detected
+test  212: 11110 0    0 faults detected
+test  213: 10000 0    0 faults detected
+test  214: 10011 0    0 faults detected
+test  215: 00101 0    0 faults detected
+test  216: 00111 1    0 faults detected
+test  217: 00000 0    0 faults detected
+test  218: 10111 1    0 faults detected
+test  219: 00111 1    0 faults detected
+test  220: 00010 0    0 faults detected
+test  221: 01001 0    0 faults detected
+test  222: 11110 0    0 faults detected
+test  223: 01111 1    0 faults detected
+test  224: 00111 1    0 faults detected
+	*******************************************************
+	*                                                     *
+	*             Welcome to HOPE (version 2.0)           *
+	*                                                     *
+	*                Dong S. Ha (ha@vt.edu)               *
+	*         Web: http://www.visc.vt.edu/people/ha       *
+	*  Virginia Polytechnic Institute & State University  *
+	*                                                     *
+	*******************************************************
+
+******   SUMMARY OF SIMULATION RESULTS   ******
+1. Circuit structure
+   Name of circuit                           : mykuklwma
+   Number of primary inputs                  : 5
+   Number of primary outputs                 : 1
+   Number of combinational gates             : 4
+   Number of flip-flops                      : 0
+   Level of the circuit                      : 3
+
+2. Simulator input parameters
+   Simulation mode                           : random
+   Initial random number generator seed      : 1618691371
+
+3. Simulation results
+   Number of test patterns applied           : 224
+   Fault coverage                            : 100.000 %
+   Number of collapsed faults                : 10
+   Number of detected faults                 : 10
+   Number of undetected faults               : 0
+
+4. Memory used                               : 167858 Kbytes
+
+5. CPU time
+   Initialization                            : 1502151.033 secs
+   Fault simulation                          : 0.000 secs
+   Total                                     : 1502151.033 secs
+
+* List of undetected faults:
