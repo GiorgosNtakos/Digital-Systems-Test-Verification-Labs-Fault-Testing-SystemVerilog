@@ -46,7 +46,6 @@ Key tasks include:
 - Identification of undetected and redundant faults
 - Analysis of circuit responses under faults
 
-Benchmark circuits such as `c880o.bench`, `s9234.bench`, and `c1355o.bench` are used.
 
 ---
 
@@ -70,7 +69,6 @@ Key tasks include:
 - Test coverage analysis
 - Generation of additional patterns for undetected faults
 
-Benchmark circuits include `c1355.v`, `c7552.v`, `s1423.v`, and `c3540.v`.
 
 ---
 
